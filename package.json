@@ -1,12 +1,19 @@
 {
-  "name": "heavenly-star-fetch",
+  "name": "starnime",
   "version": "1.0.0-alpha",
   "description": "Advanced tool that delivers random anime images with extra features.",
   "main": "index.js",
-  "types": "./typings/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stawa/Starnime.git"
+  },
   "author": "Stawa",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Stawa/Starnime/issues"
+  },
+  "homepage": "https://github.com/Stawa/Starnime#readme"
 }
