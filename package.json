@@ -3,6 +3,7 @@
   "version": "1.0.0-alpha",
   "description": "Advanced tool that delivers random anime images with extra features.",
   "main": "index.js",
+  "types": "./typings/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
