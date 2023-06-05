@@ -35,11 +35,12 @@ declare module "starnime" {
 		url: string;
 		code: number;
 		constructor(response: {
-			url: string;code: number
+			url: string; code: number
 		});
 	}
 
 	class Starnime {
+        constructor();
 		image(version: string, attachment: string): Promise < ApiResponse > ;
 	}
 
