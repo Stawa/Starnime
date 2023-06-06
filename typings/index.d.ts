@@ -8,16 +8,20 @@ declare module "starnime" {
     }
 
     enum Attachment {
+        BOOK = "book",
         CLOCK = "clock",
         CROSS = "cross",
+        CORRECT = "correct",
         EMPTY = "empty",
         FILL = "fill",
         FREQUENCY = "frequency",
+        FFMPEG = "ffmpeg",
         LOGIN = "login",
         LOGOUT = "logout",
         NEXT = "next",
         NOTES = "notes",
         PAUSE = "pause",
+        PHOTOS = "photos",
         PLAY = "play",
         PLUS = "plus",
         PREVIOUS = "previous",
