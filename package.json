@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Stawa/Starnime/issues"
   },
-  "homepage": "https://github.com/Stawa/Starnime#readme"
+  "homepage": "https://github.com/Stawa/Starnime#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.11"
+  }
 }
