@@ -53,7 +53,9 @@ declare module "starnime" {
 			code: string;
 		};
 		constructor(response: {
-			url: string, code: number, error: object
+			url: string,
+			code: number,
+			error: object
 		});
 	}
 
@@ -76,7 +78,7 @@ declare module "starnime" {
 		ApiResponse,
 		Starnime,
 		StarError,
-        Options,
+		Options,
 		Icons,
 		Category,
 		Version
