@@ -4,7 +4,8 @@ declare module "starnime" {
     }
 
     enum Category {
-        IMAGE = "images",
+        ICONS = "icons",
+        SFW = "sfw"
     }
 
     enum Attachment {
