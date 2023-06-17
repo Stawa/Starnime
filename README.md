@@ -45,12 +45,12 @@ example();
 <p> You can skip this one if you don't understand or don't want to use it manually to fetch our API. </p>
 
 ```js
-const { Starnime, Version, Category, Icons } = require('starnime');
+const { Starnime, Version, IconsRoutes } = require('starnime');
 
 const starnime = new Starnime({skipMissingError: true}); // Return undefined instead of error if there's an error.
 
 async funtion example() {
-    console.log(await starnime.image(Version.V1, Category.ICONS, Icons.PLUS));
+    console.log(await starnime.image(Version.V1, IconsRoutes.PLUS));
 };
 
 example();
@@ -67,7 +67,7 @@ const starnime = new Starnime({skipMissingError: false}); // Return an error ins
 
 async funtion example() {
     try {
-        console.log(await starnime.image('invalid_version', 'invalid_category', 'invalid_endpoint'));
+        console.log(await starnime.image('invalid_version', 'invalid_endpoint', 'invalid_type'));
     } catch(err) {
         console.log(err.name, err.code, err.message)
     }
