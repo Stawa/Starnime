@@ -8,6 +8,11 @@ declare module "starnime" {
 		SFW = "sfw",
 	}
 
+	enum EndpointSfw {
+		BITE = 'bite',
+		NEKO ='neko'
+	}
+
 	enum Icons {
 		BOOK = "book",
 		CLOCK = "clock",
@@ -34,14 +39,23 @@ declare module "starnime" {
 		VERIFIED = "verified",
 	}
 
+	enum OutputType {
+		RANDOM = 'random',
+		GIFONLY = 'gifOnly',
+		PICTUREONLY = 'pictureOnly'
+	}
+
 	function get(
 		version: string,
 		category: string,
-		params: string
+		endpoint: string,
+		outputType: string
 	): Promise <Object>;
 
 	class Options {
-		skipMissingError: boolean;
+		skipMissingError?: boolean;
+		outputType?: string;
+		defaultVersion?: string;
 	}
 
 	class ApiResponse {
@@ -61,11 +75,15 @@ declare module "starnime" {
 
 	class Starnime {
 		constructor(options?: Options);
+		neko(outputType: string): Promise<ApiResponse>
+		bite(outputType: string): Promise<ApiResponse>
 		image(
 			version: string,
 			category: string,
-			endpoint: string
+			endpoint: string,
+			outputType: string
 		): Promise <ApiResponse>;
+		emitError(error: object): Error<StarError>;
 	}
 
 	class StarError extends Error {
@@ -79,6 +97,8 @@ declare module "starnime" {
 		Starnime,
 		StarError,
 		Options,
+		OutputType,
+		EndpointSfw,
 		Icons,
 		Category,
 		Version
