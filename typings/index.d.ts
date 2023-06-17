@@ -3,40 +3,38 @@ declare module "starnime" {
 		V1 = "v1",
 	}
 
-	enum Category {
-		ICONS = "icons",
-		SFW = "sfw",
+	enum SfwRoutes {
+		BITE = 'sfw/bite',
+		NEKO = 'sfw/neko',
+		POKE = 'sfw/poke',
+		RUN = 'sfw/run',
+		SLAP = 'sfw/slap'
 	}
 
-	enum EndpointSfw {
-		BITE = 'bite',
-		NEKO ='neko'
-	}
-
-	enum Icons {
-		BOOK = "book",
-		CLOCK = "clock",
-		CROSS = "cross",
-		CORRECT = "correct",
-		EMPTY = "empty",
-		FILL = "fill",
-		FREQUENCY = "frequency",
-		FFMPEG = "ffmpeg",
-		LOGIN = "login",
-		LOGOUT = "logout",
-		NEXT = "next",
-		NOTES = "notes",
-		PAUSE = "pause",
-		PHOTOS = "photos",
-		PLAY = "play",
-		PLUS = "plus",
-		PREVIOUS = "previous",
-		REFRESH = "refresh",
-		RIGHT = "right",
-		SETTINGS = "settings",
-		STAR = "star",
-		UP = "up",
-		VERIFIED = "verified",
+	enum IconsRoutes {
+		BOOK = "icons/book",
+		CLOCK = "icons/clock",
+		CROSS = "icons/cross",
+		CORRECT = "icons/correct",
+		EMPTY = "icons/empty",
+		FFMPEG = "icons/ffmpeg",
+		FILL = "icons/fill",
+		FREQUENCY = "icons/frequency",
+		LOGIN = "icons/login",
+		LOGOUT = "icons/logout",
+		NEXT = "icons/next",
+		NOTES = "icons/notes",
+		PAUSE = "icons/pause",
+		PHOTOS = "icons/photos",
+		PLAY = "icons/play",
+		PLUS = "icons/plus",
+		PREVIOUS = "icons/previous",
+		REFRESH = "icons/refresh",
+		RIGHT = "icons/right",
+		SETTINGS = "icons/settings",
+		STAR = "icons/star",
+		UP = "icons/up",
+		VERIFIED = "icons/verified"
 	}
 
 	enum OutputType {
@@ -47,7 +45,6 @@ declare module "starnime" {
 
 	function get(
 		version: string,
-		category: string,
 		endpoint: string,
 		outputType: string
 	): Promise <Object>;
@@ -75,11 +72,13 @@ declare module "starnime" {
 
 	class Starnime {
 		constructor(options?: Options);
+		run(outputType: string): Promise<ApiResponse>
+		slap(outputType: string): Promise<ApiResponse>
+		poke(outputType: string): Promise<ApiResponse>
 		neko(outputType: string): Promise<ApiResponse>
 		bite(outputType: string): Promise<ApiResponse>
 		image(
 			version: string,
-			category: string,
 			endpoint: string,
 			outputType: string
 		): Promise <ApiResponse>;
@@ -98,9 +97,8 @@ declare module "starnime" {
 		StarError,
 		Options,
 		OutputType,
-		EndpointSfw,
-		Icons,
-		Category,
+		SfwRoutes,
+		IconsRoutes,
 		Version
 	};
 }
