@@ -9,8 +9,7 @@
 <p align="center">
     <a href="https://codeclimate.com/github/Stawa/Starnime/maintainability"><img src="https://api.codeclimate.com/v1/badges/31c5c495e872602c3ee5/maintainability" /></a>
     <a href="https://starnime.vercel.app/"><img src="https://img.shields.io/website?down_color=critical&down_message=offline&style=flat-square&up_color=blue&up_message=online&url=https%3A%2F%2Fstarnime.vercel.app%2F"><a>
-    <a href="https://github.com/Stawa/Starnime/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/anvolt.py?color=informational&style=flat-square"></a>
-    <a href="https://github.com/Stawa/Starnime"><img src="https://img.shields.io/github/package-json/v/Stawa/Starnime?style=flat-square"></a>
+    <a href="https://github.com/Stawa/Starnime"><img src="https://img.shields.io/github/package-json/v/Stawa/Starnime/main?style=flat-square"></a>
 </p>
 
 <h4> <span class="emoji">✨</span> Features </h4>
