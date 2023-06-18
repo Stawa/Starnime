@@ -73,6 +73,7 @@ declare module "starnime" {
 	class Starnime {
 		constructor(options?: Options);
 		run(outputType: string): Promise<ApiResponse>
+		smile(outputType: string): Promise<ApiResponse>
 		slap(outputType: string): Promise<ApiResponse>
 		poke(outputType: string): Promise<ApiResponse>
 		neko(outputType: string): Promise<ApiResponse>

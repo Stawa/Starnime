@@ -7,6 +7,7 @@
 </h4>
 
 <p align="center">
+    <a href="https://codeclimate.com/github/Stawa/Starnime/maintainability"><img src="https://api.codeclimate.com/v1/badges/31c5c495e872602c3ee5/maintainability" /></a>
     <a href="https://starnime.vercel.app/"><img src="https://img.shields.io/website?down_color=critical&down_message=offline&style=flat-square&up_color=blue&up_message=online&url=https%3A%2F%2Fstarnime.vercel.app%2F"><a>
     <a href="https://github.com/Stawa/Starnime/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/anvolt.py?color=informational&style=flat-square"></a>
     <a href="https://github.com/Stawa/Starnime"><img src="https://img.shields.io/github/package-json/v/Stawa/Starnime?style=flat-square"></a>
@@ -22,8 +23,11 @@
 
 <h4> <span class="emoji">📦</span> Installation </h4>
 
+<p> There are two choices for installing: stable and the latest version. Here's how, </p>
+
 ```bash
 $ npm install starnime@latest
+$ npm install https://github.com/Stawa/Starnime
 ```
 
 <h4> <span class="emoji"> 🚀 </span> Quickstart </h4>
