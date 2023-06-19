@@ -31,7 +31,7 @@ $ npm install https://github.com/Stawa/Starnime
 
 <h4> <span class="emoji"> 🚀 </span> Quickstart </h4>
 
-This is the pre-built function, so you don't have to import many classes. Also, the output is already being typed using the [`ApiResponse`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L33) class.
+This is the pre-built function, so you don't have to import many classes. Also, the output is already being typed using the [`ApiResponse`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L34) class. If you want to configure each parameter individually, you can use the parameters that are typed using the [`ParametersOptions`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L104) class.
 
 ```js
 const { Starnime } = require('starnime');
@@ -39,7 +39,7 @@ const { Starnime } = require('starnime');
 const starnime = new Starnime({skipMissingError: false});
 
 async funtion example() {
-    console.log(await starnime.neko());
+    console.log(await starnime.neko({totalAmount: 5}));
 };
 
 example();
@@ -48,12 +48,12 @@ example();
 <p> You can skip this one if you don't understand or don't want to use it manually to fetch our API. </p>
 
 ```js
-const { Starnime, Version, IconsRoutes } = require('starnime');
+const { Starnime, Version, IconsRoutes, OutputType } = require('starnime');
 
 const starnime = new Starnime({skipMissingError: true}); // Return undefined instead of error if there's an error.
 
 async funtion example() {
-    console.log(await starnime.image(Version.V1, IconsRoutes.PLUS));
+    console.log(await starnime.image(Version.V1, IconsRoutes.PLUS, OutputType.RANDOM, 2));
 };
 
 example();
@@ -70,7 +70,7 @@ const starnime = new Starnime({skipMissingError: false}); // Return an error ins
 
 async funtion example() {
     try {
-        console.log(await starnime.image('invalid_version', 'invalid_endpoint', 'invalid_type'));
+        console.log(await starnime.image('invalid_version', 'invalid_endpoint', 'invalid_type', 'invalid_total'));
     } catch(err) {
         console.log(err.name, err.code, err.message)
     }
