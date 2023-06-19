@@ -46,8 +46,9 @@ declare module "starnime" {
 	function get(
 		version: string,
 		endpoint: string,
-		outputType: string
-	): Promise <Object>;
+		outputType: string,
+		totalAmount: number
+	): Promise <object>;
 
 	class Options {
 		skipMissingError?: boolean;
@@ -55,9 +56,15 @@ declare module "starnime" {
 		defaultVersion?: string;
 	}
 
+	class ParametersOptions {
+		outputType?: string;
+		totalAmount?: number;
+	}
+
 	class ApiResponse {
 		url: string;
 		code: number;
+		images: Array<string>
 		error: {
 			name: string;
 			message: string;
@@ -72,18 +79,19 @@ declare module "starnime" {
 
 	class Starnime {
 		constructor(options?: Options);
-		run(outputType: string): Promise<ApiResponse>
-		smile(outputType: string): Promise<ApiResponse>
-		slap(outputType: string): Promise<ApiResponse>
-		poke(outputType: string): Promise<ApiResponse>
-		neko(outputType: string): Promise<ApiResponse>
-		bite(outputType: string): Promise<ApiResponse>
+		run(parametersOptions?: ParametersOptions): Promise<ApiResponse>
+		smile(parametersOptions?: ParametersOptions): Promise<ApiResponse>
+		slap(parametersOptions?: ParametersOptions): Promise<ApiResponse>
+		poke(parametersOptions?: ParametersOptions): Promise<ApiResponse>
+		neko(parametersOptions?: ParametersOptions): Promise<ApiResponse>
+		bite(parametersOptions?: ParametersOptions): Promise<ApiResponse>
 		image(
 			version: string,
 			endpoint: string,
-			outputType: string
+			outputType: string,
+			totalAmount: number,
 		): Promise <ApiResponse>;
-		emitError(error: object): Error<StarError>;
+		emitError(error: object): StarError;
 	}
 
 	class StarError extends Error {
@@ -97,6 +105,7 @@ declare module "starnime" {
 		Starnime,
 		StarError,
 		Options,
+		ParametersOptions,
 		OutputType,
 		SfwRoutes,
 		IconsRoutes,
