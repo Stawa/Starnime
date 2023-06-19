@@ -81,7 +81,7 @@ example();
 
 <h4> <span class="emoji"> ❓ </span> Help </h4>
 
-If you got unexpected error you can requests an issue on our Github Repository also if something is missing you can use the [`image`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L114) function and then requests a pull requests if you want.
+If you got unexpected error you can requests an issue on our Github Repository also if something is missing you can use the [`image`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L228) function and then requests a pull requests if you want.
 
 <h4> <span class="emoji">🔗</span> Links </h4>
 
