@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+
+code {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Red Hat Display", sans-serif;
+}
+
+li {
+    font-family: "Jost", sans-serif;
+    position: relative;
+    left: 5px;
+    letter-spacing: 1px;
+}
+
+p {
+    font-family: "Inter", sans-serif;
+}
+
+.badge,
+.text {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    position: relative;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: "Comfortaa", cursive;
+}
+
+.text {
+    position: relative;
+    left: 5px;
+}
+
+.badge {
+    background-color: #4c1;
+}
+
+.badge-class {
+    color: white;
+    background-color: rgb(105, 133, 255);
+    font-weight: bold;
+}
+
+.badge-methods {
+    color: white;
+    background-color: rgb(173, 115, 248);
+    font-weight: bold;
+}
+
+.badge-properties {
+    color: white;
+    background-color: rgb(202, 27, 158);
+    font-weight: bold;
+}
+
+.badge,
+.badge-class,
+.badge-methods,
+.badge-properties {
+    padding: 4px 16px;
+    border-radius: 12px;
+    line-height: 1;
+    border: 2px solid #fff;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    background-color: #2b2b2b;
+    border: 2px solid white;
+}
+
+.card-header {
+    padding: 15px;
+    border-bottom: 2px solid #ccc;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin: 0;
+}
+
+.card-body {
+    border-bottom: 2px solid #ccc;
+    overflow-x: auto;
+}
+
+.card-body #text {
+    position: relative;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+}
+
+.routeTable {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: "Comfortaa", cursive;
+    font-weight: bold;
+    table-layout: fixed;
+    white-space: nowrap;
+    width: 100%;
+    color: white;
+}
+
+.routeTable th,
+.routeTable td {
+    border: 3px solid black;
+    padding: 12px;
+    text-align: center;
+}
+
+.routeTable thead tr {
+    background-color: #009879;
+    color: white;
+}
+
+.routeTable tr th {
+    background: #35a9db;
+}
+
+.routeTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.routeTable td {
+    background: rgb(98, 5, 173);
+}
+
+.grid-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: "Comfortaa", cursive;
+}
+
+.grid-table th {
+    text-transform: uppercase;
+}
+
+.grid-table th,
+.grid-table td {
+    padding: 12px;
+    text-align: center;
+    border: none;
+}
+
+.grid-table tr {
+    border: none;
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.container {
+    display: flex;
+}
+
+.list {
+    position: relative;
+    right: 30px;
+    bottom: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.column {
+    padding: 0 10px;
+}
+
+@media (min-width: 1200px) {
+    .routeTable {
+        font-size: 1em;
+    }
+
+    .routeTable th,
+    .routeTable td {
+        padding: 16px 20px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .routeTable {
+        font-size: 1.1em;
+    }
+
+    .routeTable th,
+    .routeTable td {
+        padding: 20px 24px;
+    }
+}
