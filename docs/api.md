@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <div id="text">
-            <p>Description: This method will retrieve a JSON output from the API. The queries are optional to use and you can read more information at <a href="/#/starnime?id=starnime-class"><code>Starnime</code></a></p>
+            <p>Description: This method will retrieve a JSON output from the API. The queries are optional to use and you can read more information at <a href="Starnime/#/starnime?id=starnime-class"><code>Starnime</code></a></p>
             <table class="routeTable">
                 <thead>
                     <tr>

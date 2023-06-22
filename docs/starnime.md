@@ -7,7 +7,7 @@
         <span class="badge-class" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Class </span>
         <h4 id="starnime-class">
-            <a href="/#/starnime?id=starnime-class">Starnime</a>
+            <a href="Starnime/#/starnime?id=starnime-class">Starnime</a>
         </h4>
     </div>
     <p style="margin-top: 0;">The main class to interact with our API is also built with pre-built functions.</p>
@@ -26,10 +26,10 @@
                 <tr>
                     <td>options</td>
                     <td>
-                        <a href="/#/starnime?id=options-class">Options</a>
+                        <a href="Starnime/#/starnime?id=options-class">Options</a>
                     </td>
                     <td>
-                        <a href="/#/starnime?id=defaultoptions-properties">defaultOptions</a>
+                        <a href="Starnime/#/starnime?id=defaultoptions-properties">defaultOptions</a>
                     </td>
                     <td>
                         <span style="color: red; font-weight: bold;">✕</span>
@@ -44,7 +44,7 @@
             <h4>PROPERTIES</h4>
             <ul id="propertiesList" class="list">
                 <li>
-                    <a href="/#/starnime?id=options-properties">
+                    <a href="Starnime/#/starnime?id=options-properties">
                         <i class="fa-solid fa-chevron-right"></i> options </a>
                 </li>
             </ul>
@@ -53,31 +53,31 @@
             <h4>METHODS</h4>
             <ul id="methodsList" class="list">
                 <li>
-                    <a href="/#/starnime?id=run-methods">
+                    <a href="Starnime/#/starnime?id=run-methods">
                         <i class="fa-solid fa-chevron-right"></i> run </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=smile-methods">
+                    <a href="Starnime/#/starnime?id=smile-methods">
                         <i class="fa-solid fa-chevron-right"></i> smile </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=slap-methods">
+                    <a href="Starnime/#/starnime?id=slap-methods">
                         <i class="fa-solid fa-chevron-right"></i> slap </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=poke-methods">
+                    <a href="Starnime/#/starnime?id=poke-methods">
                         <i class="fa-solid fa-chevron-right"></i> poke </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=neko-methods">
+                    <a href="Starnime/#/starnime?id=neko-methods">
                         <i class="fa-solid fa-chevron-right"></i> neko </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=bite-methods">
+                    <a href="Starnime/#/starnime?id=bite-methods">
                         <i class="fa-solid fa-chevron-right"></i> bite </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=image-methods">
+                    <a href="Starnime/#/starnime?id=image-methods">
                         <i class="fa-solid fa-chevron-right"></i> image </a>
                 </li>
             </ul>
@@ -87,18 +87,18 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="options-properties">
-            <a href="/#/starnime?id=options-properties">.options</a>
+            <a href="Starnime/#/starnime?id=options-properties">.options</a>
         </h4>
     </div>
     <p style="margin-top: 0; margin-bottom: 0;">This is an optional options for configuring requests to our API.</p>
-    <p style="margin-top: 0;">Type: <a href="/#/starnime?id=options-class">Options <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    <p style="margin-top: 0;">Type: <a href="Starnime/#/starnime?id=options-class">Options <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
     </p>
     <div style="display: flex; align-items: center;">
         <span class="badge-methods" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Methods </span>
         <h4 id="run-methods">
-            <a href="/#/starnime?id=run-methods">.run(parametersOptions)</a>
+            <a href="Starnime/#/starnime?id=run-methods">.run(parametersOptions)</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Make an API request pre-built to fetch run gifs/images.</p>
@@ -116,7 +116,7 @@
             <tr>
                 <td>parametersOptions</td>
                 <td>
-                    <a href="/#/starnime?id=parameters-options-class">ParametersOptions</a>
+                    <a href="Starnime/#/starnime?id=parameters-options-class">ParametersOptions</a>
                 </td>
                 <td>
                     <i>none <i>
@@ -132,7 +132,7 @@
         <span class="badge-methods" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Methods </span>
         <h4 id="smile-methods">
-            <a href="/#/starnime?id=smile-methods">.smile(parametersOptions)</a>
+            <a href="Starnime/#/starnime?id=smile-methods">.smile(parametersOptions)</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Make an API request pre-built to fetch smile gifs/images.</p>
@@ -150,7 +150,7 @@
             <tr>
                 <td>parametersOptions</td>
                 <td>
-                    <a href="/#/starnime?id=parameters-options-class">ParametersOptions</a>
+                    <a href="Starnime/#/starnime?id=parameters-options-class">ParametersOptions</a>
                 </td>
                 <td>
                     <i>none <i>
@@ -166,7 +166,7 @@
         <span class="badge-methods" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Methods </span>
         <h4 id="slap-methods">
-            <a href="/#/starnime?id=slap-methods">.slap(parametersOptions)</a>
+            <a href="Starnime/#/starnime?id=slap-methods">.slap(parametersOptions)</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Make an API request pre-built to fetch slap gifs/images.</p>
@@ -184,7 +184,7 @@
             <tr>
                 <td>parametersOptions</td>
                 <td>
-                    <a href="/#/starnime?id=parameters-options-class">ParametersOptions</a>
+                    <a href="Starnime/#/starnime?id=parameters-options-class">ParametersOptions</a>
                 </td>
                 <td>
                     <i>none <i>
@@ -200,7 +200,7 @@
         <span class="badge-methods" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Methods </span>
         <h4 id="poke-methods">
-            <a href="/#/starnime?id=poke-methods">.poke(parametersOptions)</a>
+            <a href="Starnime/#/starnime?id=poke-methods">.poke(parametersOptions)</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Make an API request pre-built to fetch poke gifs/images.</p>
@@ -218,7 +218,7 @@
             <tr>
                 <td>parametersOptions</td>
                 <td>
-                    <a href="/#/starnime?id=parameters-options-class">ParametersOptions</a>
+                    <a href="Starnime/#/starnime?id=parameters-options-class">ParametersOptions</a>
                 </td>
                 <td>
                     <i>none <i>
@@ -234,7 +234,7 @@
         <span class="badge-methods" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Methods </span>
         <h4 id="neko-methods">
-            <a href="/#/starnime?id=neko-methods">.neko(parametersOptions)</a>
+            <a href="Starnime/#/starnime?id=neko-methods">.neko(parametersOptions)</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Make an API request pre-built to fetch neko gifs/images.</p>
@@ -252,7 +252,7 @@
             <tr>
                 <td>parametersOptions</td>
                 <td>
-                    <a href="/#/starnime?id=parameters-options-class">ParametersOptions</a>
+                    <a href="Starnime/#/starnime?id=parameters-options-class">ParametersOptions</a>
                 </td>
                 <td>
                     <i>none <i>
@@ -268,7 +268,7 @@
         <span class="badge-methods" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Methods </span>
         <h4 id="bite-methods">
-            <a href="/#/starnime?id=bite-methods">.bite(parametersOptions)</a>
+            <a href="Starnime/#/starnime?id=bite-methods">.bite(parametersOptions)</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Make an API request pre-built to fetch bite gifs/images.</p>
@@ -286,7 +286,7 @@
             <tr>
                 <td>parametersOptions</td>
                 <td>
-                    <a href="/#/starnime?id=parameters-options-class">ParametersOptions</a>
+                    <a href="Starnime/#/starnime?id=parameters-options-class">ParametersOptions</a>
                 </td>
                 <td>
                     <i>none <i>
@@ -302,7 +302,7 @@
         <span class="badge-methods" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Methods </span>
         <h4 id="image-methods">
-            <a href="/#/starnime?id=image-methods">.image(version, endpoint, outputType, totalAmount)</a>
+            <a href="Starnime/#/starnime?id=image-methods">.image(version, endpoint, outputType, totalAmount)</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Make an API request pre-built to fetch image gifs/images.</p>
@@ -379,7 +379,7 @@
         <span class="badge-class" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Class </span>
         <h4 id="starerror-class">
-            <a href="/#/starnime?id=starerror-class">StarError</a>
+            <a href="Starnime/#/starnime?id=starerror-class">StarError</a>
         </h4>
     </div>
     <p style="margin-top: 0; margin-bottom: 0;">Extends <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" target="_blank">Error <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -450,15 +450,15 @@
             </h4>
             <ul id="propertiesList" class="list">
                 <li>
-                    <a href="/#/starnime?id=name-properties">
+                    <a href="Starnime/#/starnime?id=name-properties">
                         <i class="fa-solid fa-chevron-right"></i> name </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=message-properties">
+                    <a href="Starnime/#/starnime?id=message-properties">
                         <i class="fa-solid fa-chevron-right"></i> message </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=code-properties">
+                    <a href="Starnime/#/starnime?id=code-properties">
                         <i class="fa-solid fa-chevron-right"></i> code </a>
                 </li>
             </ul>
@@ -468,7 +468,7 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="name-properties">
-            <a href="/#/starnime?id=name-properties">.name</a>
+            <a href="Starnime/#/starnime?id=name-properties">.name</a>
         </h4>
     </div>
     <div>
@@ -480,7 +480,7 @@
             <span class="badge-properties" style="margin-right: 10px;">
                 <i class="fab fa-js-square"></i> Properties </span>
             <h4 id="message-properties">
-                <a href="/#/starnime?id=message-properties">.message</a>
+                <a href="Starnime/#/starnime?id=message-properties">.message</a>
             </h4>
         </div>
         <p style="margin-top: 0; margin-bottom: 0;">This will return the message of the error. </p>
@@ -491,7 +491,7 @@
             <span class="badge-properties" style="margin-right: 10px;">
                 <i class="fab fa-js-square"></i> Properties </span>
             <h4 id="code-properties">
-                <a href="/#/starnime?id=code-properties">.code</a>
+                <a href="Starnime/#/starnime?id=code-properties">.code</a>
             </h4>
         </div>
         <p style="margin-top: 0; margin-bottom: 0;">This will return the code of the error. </p>
@@ -509,7 +509,7 @@
         <span class="badge-class" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Class </span>
         <h4 id="options-class">
-            <a href="/#/starnime?id=options-class">Options</a>
+            <a href="Starnime/#/starnime?id=options-class">Options</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Options class for configuring API interaction.</p>
@@ -578,15 +578,15 @@
             </h4>
             <ul id="propertiesList" class="list">
                 <li>
-                    <a href="/#/starnime?id=skimissingerror-properties">
+                    <a href="Starnime/#/starnime?id=skimissingerror-properties">
                         <i class="fa-solid fa-chevron-right"></i> skipMissingError </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=outputtype-properties">
+                    <a href="Starnime/#/starnime?id=outputtype-properties">
                         <i class="fa-solid fa-chevron-right"></i> outputType </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=defaultversion-properties">
+                    <a href="Starnime/#/starnime?id=defaultversion-properties">
                         <i class="fa-solid fa-chevron-right"></i> defaultVersion </a>
                 </li>
             </ul>
@@ -596,10 +596,10 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="skimissingerror-properties">
-            <a href="/#/starnime?id=skimissingerror-properties">.skipMissingError</a>
+            <a href="Starnime/#/starnime?id=skimissingerror-properties">.skipMissingError</a>
         </h4>
     </div>
-    <p style="margin-top: 0; margin-bottom: 0;">Every error that is related to <a href="/#/starnime?id=starerror-class">StarError</a> will be ignored, and maybe the function will return undefined. </p>
+    <p style="margin-top: 0; margin-bottom: 0;">Every error that is related to <a href="Starnime/#/starnime?id=starerror-class">StarError</a> will be ignored, and maybe the function will return undefined. </p>
     <p style="margin-top: 0;">Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
     </p>
@@ -607,7 +607,7 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="outputtype-properties">
-            <a href="/#/starnime?id=outputtype-properties">.outputType</a>
+            <a href="Starnime/#/starnime?id=outputtype-properties">.outputType</a>
         </h4>
     </div>
     <p style="margin-top: 0; margin-bottom: 0;">This will make the API return a specific type of file.</p>
@@ -618,7 +618,7 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="defaultversion-properties">
-            <a href="/#/starnime?id=defaultversion-properties">.defaultVersion</a>
+            <a href="Starnime/#/starnime?id=defaultversion-properties">.defaultVersion</a>
         </h4>
     </div>
     <p style="margin-top: 0; margin-bottom: 0;">This option allows you to specify whether the API should return the previous version or the current version of the API.</p>
@@ -629,7 +629,7 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="defaultoptions-properties">
-            <a href="/#/starnime?id=defaultoptions-properties">.defaultOptions</a>
+            <a href="Starnime/#/starnime?id=defaultoptions-properties">.defaultOptions</a>
         </h4>
     </div>
     <p style="margin-top: 0; margin-bottom: 0;">This object contains default values for certain options if the user does not provide any. It includes the following properties: <code>skipMissingError: true</code>, <code>outputType: 'random'</code> and <code>defaultVersion: 'v1'</code></p>
@@ -642,7 +642,7 @@
         <span class="badge-class" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Class </span>
         <h4 id="parameters-options-class">
-            <a href="/#/starnime?id=parameters-options-class">ParametersOptions</a>
+            <a href="Starnime/#/starnime?id=parameters-options-class">ParametersOptions</a>
         </h4>
     </div>
     <p style="margin-top: 0;">Represents the options to configure the API response.</p>
@@ -696,15 +696,15 @@
             </h4>
             <ul id="propertiesList" class="list">
                 <li>
-                    <a href="/#/starnime?id=skimissingerror-properties">
+                    <a href="Starnime/#/starnime?id=skimissingerror-properties">
                         <i class="fa-solid fa-chevron-right"></i> skipMissingError </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=outputtype-properties">
+                    <a href="Starnime/#/starnime?id=outputtype-properties">
                         <i class="fa-solid fa-chevron-right"></i> outputType </a>
                 </li>
                 <li>
-                    <a href="/#/starnime?id=defaultversion-properties">
+                    <a href="Starnime/#/starnime?id=defaultversion-properties">
                         <i class="fa-solid fa-chevron-right"></i> defaultVersion </a>
                 </li>
             </ul>
@@ -714,10 +714,10 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="skimissingerror-properties">
-            <a href="/#/starnime?id=skimissingerror-properties">.skipMissingError</a>
+            <a href="Starnime/#/starnime?id=skimissingerror-properties">.skipMissingError</a>
         </h4>
     </div>
-    <p style="margin-top: 0; margin-bottom: 0;">Every error that is related to<a href="/#/starnime?id=starerror-class">StarError</a> will be ignored, and maybe the function will return undefined. </p>
+    <p style="margin-top: 0; margin-bottom: 0;">Every error that is related to<a href="Starnime/#/starnime?id=starerror-class">StarError</a> will be ignored, and maybe the function will return undefined. </p>
     <p style="margin-top: 0;">Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
     </p>
@@ -725,7 +725,7 @@
         <span class="badge-properties" style="margin-right: 10px;">
             <i class="fab fa-js-square"></i> Properties </span>
         <h4 id="outputtype-properties">
-            <a href="/#/starnime?id=outputtype-properties">.totalAmount</a>
+            <a href="Starnime/#/starnime?id=outputtype-properties">.totalAmount</a>
         </h4>
     </div>
     <p style="margin-top: 0; margin-bottom: 0;">This will make the API return a specific amount.</p>
