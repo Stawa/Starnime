@@ -13,4 +13,5 @@
     * [<i class="fa-brands fa-node-js"></i> Starnime](starnime.md "Starnime | Docs")
         * [<i class="fa-solid fa-gear"></i> Starnime Class](starnime.md?id=starnime-class)
         * [<i class="fa-solid fa-fire"></i> StarError](starnime.md?id=starerror-class)
+        * [<i class="fa-solid fa-reply"></i> ApiResponse](starnime.md?id=apiresponse-class)
         * [<i class="fa-solid fa-filter"></i> Options](starnime.md?id=options)

@@ -13,7 +13,7 @@ $|warning|npm install https://github.com/Stawa/Starnime
 
 #### :fas fa-code fa-fw: Simple Start
 
-Each pre-built function in `Starnime` is already typed using the `ApiResponse` class, making it easy to fetch responses from our API.
+Each pre-built function in [`Starnime`](/Starnime/#/starnime?id=starnime-class) is already typed using the [`ApiResponse`](/Starnime/#/starnime?id=apiresponse-class) class, making it easy to fetch responses from our API.
 
 ```js
 const { Starnime } = require('starnime');
@@ -29,7 +29,7 @@ example();
 
 #### :fas fa-laptop-code fa-fw: Manual Fetching
 
-The `Starnime` class also has a function that can be used for fetching our API manually. If you have no idea how to use it, there are some enums available to use. If you are still confused, you can go to our documentation API.
+The [`Starnime`](/Starnime/#/starnime?id=starnime-class) class also has a function that can be used for fetching our API manually. If you have no idea how to use it, there are some enums available to use. If you are still confused, you can go to our documentation API.
 
 ```js
 const { Starnime, Version, IconsRoutes, OutputType } = require('starnime');
@@ -45,7 +45,7 @@ example();
 
 #### :fa fa-triangle-exclamation fa-fw: Error Handler
 
-`Starnime` already has a class that handles any errors (excluding `dependencies`), so you can use `try` and `catch` the error easily. Every error that shows up is already being typed by the `StarError` class, so you can console log the error name, error message, and error code.
+[`Starnime`](/Starnime/#/starnime?id=starnime-class) already has a class that handles any errors (excluding `dependencies`), so you can use `try` and `catch` the error easily. Every error that shows up is already being typed by the [`StarError`](/Starnime/#/starnime?id=starerror-class) class, so you can console log the error name, error message, and error code.
 
 ```js
 const { Starnime } = require('starnime');
