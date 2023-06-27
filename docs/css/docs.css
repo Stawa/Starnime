@@ -28,6 +28,15 @@ p {
     font-family: "Inter", sans-serif;
 }
 
+[class="position-badge-card"] {
+    display: flex;
+    align-items: center;
+}
+
+[class="badge-description"] p {
+    margin-top: 0;
+}
+
 .badge,
 .text {
     display: inline-block;

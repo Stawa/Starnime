@@ -1,5 +1,5 @@
 * <i class="fa-solid fa-circle-info"></i> About
-    * [<i class="fa-solid fa-house-chimney"></i> Home](/)
+    * [<i class="fa-solid fa-house-chimney"></i> Home](/ "Starnime | Home")
     * [<i class="fa-solid fa-scroll"></i> Changelog](changelog.md "Starnime | Changelog")
 * <i class="fa-solid fa-rocket"></i> Getting Started
     * [<i class="fa-solid fa-code-branch"></i> Quickstart](quickstart.md "Starnime | Quickstart")
@@ -15,3 +15,8 @@
         * [<i class="fa-solid fa-fire"></i> StarError](starnime.md?id=starerror-class)
         * [<i class="fa-solid fa-reply"></i> ApiResponse](starnime.md?id=apiresponse-class)
         * [<i class="fa-solid fa-filter"></i> Options](starnime.md?id=options)
+    * [<i class="fa-solid fa-ban"></i> R34](r34.md "Starnime R34 | Docs")
+        * [<i class="fa-solid fa-gear"></i> R34 Class](r34.md?id=r34-class)
+        * [<i class="fa-solid fa-reply"></i> PostR34 Class](r34.md?id=postr34-class)
+        * [<i class="fa-solid fa-comment-dots"></i> PostCommentsR34 Class](r34.md?id=postcommentsr34-class)
+        * [<i class="fa-solid fa-tags"></i> R34TopTags Class](r34.md?id=r34toptags-class)
