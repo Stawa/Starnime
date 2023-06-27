@@ -22,8 +22,9 @@ declare module "starnime/trivia" {
 		writeFile(): void;
 		missingNumber(nums: Array <number | string> ): number;
 		checkDuplicate(questions: object, newQuestion: string): boolean;
-		addQuestion(parametersTrivia: ParametersTrivia): object;
-        runOnConsole(): void;
+		readFile(filename: string): Promise<string>;
+		addQuestion(parametersTrivia: ParametersTrivia): Promise<object>;
+		runOnConsole(): Promise<void>;
 	}
 
 	export {
