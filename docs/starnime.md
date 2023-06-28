@@ -1,5 +1,5 @@
 <center>
-    <h2> Starnime 「 Documentation 」 </h2>
+    <h2> Starnime 「 <i class="fa-brands fa-node-js"></i> Documentation 」 </h2>
     <p>Everything related to the Starnime package will be shown in these docs.</p>
 </center>
 <div>

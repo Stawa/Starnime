@@ -1,5 +1,5 @@
 <center>
-    <h2> Starnime 「 API 」 </h2>
+    <h2> Starnime 「 <i class="fa-solid fa-puzzle-piece"></i> API 」 </h2>
     <p>All routes of this API will be shown with methods to fetch them.</p>
 </center>
 

@@ -37,6 +37,13 @@ p {
     margin-top: 0;
 }
 
+[class="featureList"] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    letter-spacing: 1px;
+}
+
 .badge,
 .text {
     display: inline-block;

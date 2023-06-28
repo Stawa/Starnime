@@ -1,4 +1,7 @@
 <center>
+    <h2>
+        Starnime「 <i class="fa-solid fa-code-branch"></i> Quickstart 」
+    </h2>
     <a href="https://nodei.co/npm/starnime/"><img src="https://nodei.co/npm/starnime.png"></a>
 </center>
 
