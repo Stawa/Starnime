@@ -42,7 +42,7 @@ declare module "starnime/discord/webhook" {
         setDescription(description: string): void;
         setURL(url: string): void;
         setTimestamp(timestamp?: string | any): void;
-        setColor(color: Array<number> | string): void;
+        setColor(color: string | number[]): void;
         setFooter(
             text: string,
             icon_url?: string,
@@ -56,6 +56,7 @@ declare module "starnime/discord/webhook" {
         ): void;
         addFields(name: string, value: string, inline: boolean): void;
         deleteField(index: number): void;
+        __parseColor(color: string | number[]): number;
     }
 
     class DiscordWebhookOptions {
