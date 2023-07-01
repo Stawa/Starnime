@@ -37,25 +37,25 @@ declare module "starnime/discord/webhook" {
             url?: string,
             icon_url?: string,
             proxy_icon_url?: string
-        ): void;
-        setTitle(title: string): void;
-        setDescription(description: string): void;
-        setURL(url: string): void;
-        setTimestamp(timestamp?: string | any): void;
-        setColor(color: string | number[]): void;
+        ): this;
+        setTitle(title: string): this;
+        setDescription(description: string): this;
+        setURL(url: string): this;
+        setTimestamp(timestamp?: string | any): this;
+        setColor(color: string | number[]): this;
         setFooter(
             text: string,
             icon_url?: string,
             proxy_icon_url?: string
-        ): void;
+        ): this;
         setImage(
             url: string,
             proxy_url?: string,
             height?: string,
             width?: string
-        ): void;
-        addFields(name: string, value: string, inline: boolean): void;
-        deleteField(index: number): void;
+        ): this;
+        addFields(name: string, value: string, inline: boolean): this;
+        deleteField(index: number): this;
         __parseColor(color: string | number[]): number;
     }
 
