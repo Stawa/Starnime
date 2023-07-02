@@ -8,17 +8,19 @@
 
 <p align="center">
     <a href="https://codeclimate.com/github/Stawa/Starnime/maintainability"><img src="https://api.codeclimate.com/v1/badges/31c5c495e872602c3ee5/maintainability" /></a>
-    <a href="https://starnime.vercel.app/"><img src="https://img.shields.io/website?down_color=critical&down_message=offline&style=flat-square&up_color=blue&up_message=online&url=https%3A%2F%2Fstarnime.vercel.app%2F"><a>
+    <a href="https://starnime.vercel.app/"><img src="https://img.shields.io/website?down_color=critical&down_message=offline&style=flat-square&up_color=blue&up_message=online&url=https%3A%2F%2Fstarnime.vercel.app/api%2F"><a>
     <a href="https://github.com/Stawa/Starnime"><img src="https://img.shields.io/github/package-json/v/Stawa/Starnime/main?style=flat-square"></a>
+    <a href="https://github.com/Stawa/Starnime"><img src="https://img.shields.io/website?up_message=available&up_color=green&down_message=unavailable&down_color=red&url=https%3A%2F%2Fstawa.github.io%2FStarnime%2F%23%2F&style=flat&label=documentation"></a>
 </p>
 
 <h4> <span class="emoji">✨</span> Features </h4>
 
-<ul>
-    <li><h5>Anime Images: This include random gifs or pictures of anime characters that can be also use for roleplaying</h5></li>
-    <li><h5>Easy-to-Use: Can be utilized either manually or through pre-built functions for effortless API fetching.</h5></li>
-    <li><h5>Error Handling: Equipped with a versatile error handling class that efficiently manages any encountered errors and can be easily extracted for further analysis.</h5></li>
-</ul>
+- <b>Anime Images: This include random gifs or pictures of anime characters that can be also use for roleplaying.</b>
+- <b>Easy-to-Use: Can be utilized either manually or through pre-built functions for effortless API fetching.</b>
+- <b>Trivia: This can be used for discord bot and easy to maintain also can be stored as JSON.</b>
+- <b>Rule34: This feature can fetch the Rule34 API with a pre-built function that is already typed and easy to use.</b>
+- <b>Discord: Use it to interact with the Discord API with ease, including the integration of Discord webhooks.</b>
+- <b>Error Handling: Equipped with a versatile error handling class that efficiently manages any encountered errors and can be easily extracted for further analysis.</b>
 
 <h4> <span class="emoji">📦</span> Installation </h4>
 
@@ -31,15 +33,15 @@ $ npm install https://github.com/Stawa/Starnime
 
 <h4> <span class="emoji"> 🚀 </span> Quickstart </h4>
 
-This is the pre-built function, so you don't have to import many classes. Also, the output is already being typed using the [`ApiResponse`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L34) class. If you want to configure each parameter individually, you can use the parameters that are typed using the [`ParametersOptions`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L104) class.
+This is the pre-built function, so you don't have to import many classes. Also, the output is already being typed using the `ApiResponse` class. If you want to configure each parameter individually, you can use the parameters that are typed using the `ParametersOptions` class.
 
 ```js
 const { Starnime } = require('starnime');
 
-const starnime = new Starnime({skipMissingError: false});
+const starnime = new Starnime({ skipMissingError: false });
 
 async funtion example() {
-    console.log(await starnime.neko({totalAmount: 5}));
+    console.log(await starnime.neko({ totalAmount: 5 }));
 };
 
 example();
@@ -50,7 +52,7 @@ example();
 ```js
 const { Starnime, Version, IconsRoutes, OutputType } = require('starnime');
 
-const starnime = new Starnime({skipMissingError: true}); // Return undefined instead of error if there's an error.
+const starnime = new Starnime({ skipMissingError: false }); // Return undefined instead of error if there's an error.
 
 async funtion example() {
     console.log(await starnime.image(Version.V1, IconsRoutes.PLUS, OutputType.RANDOM, 2));
@@ -61,12 +63,12 @@ example();
 
 <h4> <span class="emoji"> ⚠️ </span> Error Handler </h4>
 
-<p> Starnime already has an error class handler called <a href="https://github.com/Stawa/Starnime/blob/main/lib/index.js#L13"><b>StarError</b></a> that can be handled easily and can also extract information such as the error name, error message, and error code. </p>
+Starnime already has an error class handler called `StarError` error class that can be handled easily and can also extract information such as the error name, error message, and error code.
 
 ```js
 const { Starnime } = require('starnime');
 
-const starnime = new Starnime({skipMissingError: false}); // Return an error instead of undefined if there's an error.
+const starnime = new Starnime({ skipMissingError: false }); // Return an error instead of undefined if there's an error.
 
 async funtion example() {
     try {
@@ -81,7 +83,7 @@ example();
 
 <h4> <span class="emoji"> ❓ </span> Help </h4>
 
-If you got unexpected error you can requests an issue on our Github Repository also if something is missing you can use the [`image`](https://github.com/Stawa/Starnime/blob/main/lib/index.js#L228) function and then requests a pull requests if you want.
+If you got unexpected error you can requests an issue on our Github Repository also if something is missing you can use the `Starnime.image` function and then requests a pull requests if you want.
 
 <h4> <span class="emoji">🔗</span> Links </h4>
 
