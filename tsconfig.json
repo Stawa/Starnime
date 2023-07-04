@@ -2,7 +2,7 @@
     "compilerOptions": {
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
-        "exactOptionalPropertyTypes": true,
+        "exactOptionalPropertyTypes": false,
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
         "noImplicitReturns": true,
@@ -11,10 +11,19 @@
         "strict": true,
         "useUnknownInCatchVariables": true,
         "noUncheckedIndexedAccess": true,
+        "declaration": true,
+        "declarationDir": "dist/types",
+        "sourceMap": true,
         "outDir": "dist",
         "allowJs": true,
-        "target": "es2017",
-        "noImplicitAny": true
+        "target": "ESNext",
+        "module": "CommonJS",
+        "noImplicitAny": true,
+        "esModuleInterop": true,
+        "incremental": true,
+        "checkJs": false,
+        "alwaysStrict": true,
+        "moduleResolution": "node",
     },
     "include": [
         "./**/*"
