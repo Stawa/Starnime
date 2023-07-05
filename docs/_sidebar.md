@@ -7,6 +7,10 @@
         * [<i class="fa-solid fa-code"></i> Simple Start](quickstart.md?id=-simple-start)
         * [<i class="fa-solid fa-laptop-code"></i> Manual Fetching](quickstart.md?id=-manual-fetching)
         * [<i class="fa-solid fa-triangle-exclamation"></i> Error Handler](quickstart.md?id=-error-handler)
+    * [<i class="fa-solid fa-folder"></i> Examples](example.md "Starnime | Examples")
+        * [<i class="fa-solid fa-circle-chevron-right"></i> Starnime](example.md?id=starnime-example)
+        * [<i class="fa-solid fa-circle-chevron-right"></i> Discord Webhook](example.md?id=discord-webhook-example)
+        * [<i class="fa-solid fa-circle-chevron-right"></i> R34](example.md?id=r34-example)
 * <i class="fa-solid fa-book"></i> Documentation
     * [<i class="fa-solid fa-puzzle-piece"></i> API](api.md "Starnime | ApiDocs")
         * [<i class="fa-solid fa-signs-post"></i> Methods](api.md?id=-methods)
