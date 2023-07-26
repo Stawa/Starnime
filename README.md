@@ -10,7 +10,7 @@
     <a href="https://codeclimate.com/github/Stawa/Starnime/maintainability"><img src="https://api.codeclimate.com/v1/badges/31c5c495e872602c3ee5/maintainability" /></a>
     <a href="https://starnime.vercel.app/"><img src="https://img.shields.io/website?down_color=critical&down_message=offline&style=flat&up_color=blue&up_message=online&url=https%3A%2F%2Fstarnime.vercel.app/api%2F"><a>
     <a href="https://www.npmjs.com/package/starnime"><img src="https://img.shields.io/npm/dm/starnime"></a>
-    <a href="https://github.com/Stawa/Starnime"><img src="https://img.shields.io/website?up_message=available&up_color=green&down_message=unavailable&down_color=red&url=https%3A%2F%2Fstawa.github.io%2FStarnime%2F%23%2F&style=flat&label=documentation"></a>
+    <a href="https://stawa.github.io/Starnime/#/"><img src="https://img.shields.io/website?up_message=available&up_color=green&down_message=unavailable&down_color=red&url=https%3A%2F%2Fstawa.github.io%2FStarnime%2F%23%2F&style=flat&label=documentation"></a>
 </p>
 
 <h4> <span class="emoji">✨</span> Features </h4>

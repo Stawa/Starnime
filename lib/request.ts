@@ -7,15 +7,15 @@
  * @returns {Promise<object>} The response of the API.
  */
 export async function get(
-  version: string,
-  endpoint: string,
-  outputType: string,
-  totalAmount: number
+    version: string,
+    endpoint: string,
+    outputType: string,
+    totalAmount: number,
 ): Promise<object> {
-  const response = await fetch(
-    `https://starnime.vercel.app/api/${version}/${endpoint}/?type=${outputType}&total=${totalAmount}`
-  );
-  return await response.json();
+    const response = await fetch(
+        `https://starnime.vercel.app/api/${version}/${endpoint}/?type=${outputType}&total=${totalAmount}`,
+    );
+    return await response.json();
 }
 
 /**
@@ -25,9 +25,9 @@ export async function get(
  * @returns {Promise<object>} The response of the API.
  */
 export async function getCustomURL(
-  url: string,
-  options?: object
+    url: string,
+    options?: object,
 ): Promise<Response> {
-  const response = await fetch(url, options);
-  return response;
+    const response = await fetch(url, options);
+    return response;
 }
