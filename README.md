@@ -40,7 +40,7 @@ const { Starnime } = require('starnime');
 
 const starnime = new Starnime({ skipMissingError: false });
 
-async funtion example() {
+async function example() {
     console.log(await starnime.neko({ totalAmount: 5 }));
 };
 
@@ -54,7 +54,7 @@ const { Starnime, Version, IconsRoutes, OutputType } = require('starnime');
 
 const starnime = new Starnime({ skipMissingError: false }); // Return undefined instead of error if there's an error.
 
-async funtion example() {
+async function example() {
     console.log(await starnime.image(Version.V1, IconsRoutes.PLUS, OutputType.RANDOM, 2));
 };
 
@@ -70,7 +70,7 @@ const { Starnime } = require('starnime');
 
 const starnime = new Starnime({ skipMissingError: false }); // Return an error instead of undefined if there's an error.
 
-async funtion example() {
+async function example() {
     try {
         console.log(await starnime.image('invalid_version', 'invalid_endpoint', 'invalid_type', 'invalid_total'));
     } catch(err) {

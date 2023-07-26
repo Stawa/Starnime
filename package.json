@@ -28,7 +28,11 @@
     "anime",
     "api",
     "images",
-    "roleplay"
+    "roleplay",
+    "r34",
+    "danbooru",
+    "discord",
+    "webhook"
   ],
   "devDependencies": {
     "@types/xml2js": "^0.4.11",

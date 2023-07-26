@@ -318,7 +318,7 @@ export class DiscordWebhook {
    * @param options - Options for the DiscordWebhook class.
    */
   constructor(options: DiscordWebhookOptions) {
-    this.options = new DiscordWebhookOptions(options);
+    this.options = options instanceof DiscordWebhookOptions ? options : new DiscordWebhookOptions(options);
     this.payload = {
       embeds: [],
     };

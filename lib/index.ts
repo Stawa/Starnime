@@ -189,7 +189,10 @@ export class Starnime {
    * @param {Options} [options] - Optional options for the Starnime class.
    */
   constructor(options?: Options) {
-    this.options = options ? new Options(options) : new Options();
+    this.options = new Options();
+    if (options) {
+      this.options = options instanceof Options ? options : new Options(options);
+    }
   }
 
   /**

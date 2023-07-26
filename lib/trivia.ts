@@ -127,7 +127,7 @@ export class StarTrivia {
   options: TriviaOptions;
 
   constructor(options: TriviaOptions) {
-    this.options = new TriviaOptions(options);
+    this.options = options instanceof TriviaOptions ? options : new TriviaOptions(options);
   }
 
   createDirectory(): void {
