@@ -6,8 +6,7 @@
   "type": "commonjs",
   "types": "dist/types",
   "scripts": {
-    "build": "if not exist dist mkdir dist && tsc --build",
-    "postinstall": "npm run build"
+    "build": "if not exist dist mkdir dist && tsc --build"
   },
   "repository": {
     "type": "git",
