@@ -23,12 +23,8 @@
         "incremental": true,
         "checkJs": false,
         "alwaysStrict": true,
-        "moduleResolution": "node",
+        "moduleResolution": "node"
     },
-    "include": [
-        "./**/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["./**/*"],
+    "exclude": ["node_modules"]
 }

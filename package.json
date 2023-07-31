@@ -6,7 +6,8 @@
   "type": "commonjs",
   "types": "dist/types",
   "scripts": {
-    "build": "if not exist dist mkdir dist && tsc --build"
+    "build": "npm run clean && tsc --build",
+    "clean": "IF EXIST dist rmdir /s /q dist"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,7 @@
   "homepage": "https://starnime.vercel.app",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "node-fetch": "^2.6.11",
+    "node-fetch": "^2.6.12",
     "xml2js": "^0.6.0"
   },
   "keywords": [
