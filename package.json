@@ -1,13 +1,14 @@
 {
   "name": "starnime",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Advanced tool that delivers random anime images with extra features.",
   "main": "dist/index.js",
   "type": "commonjs",
   "types": "dist/types",
   "scripts": {
     "build": "npm run clean && tsc --build",
-    "clean": "IF EXIST dist rmdir /s /q dist"
+    "clean": "IF EXIST dist rmdir /s /q dist",
+    "publish": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",

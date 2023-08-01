@@ -19,6 +19,8 @@
 - <b>Easy-to-Use: Can be utilized either manually or through pre-built functions for effortless API fetching.</b>
 - <b>Trivia: This can be used for discord bot and easy to maintain also can be stored as JSON.</b>
 - <b>Rule34: This feature can fetch the Rule34 API with a pre-built function that is already typed and easy to use.</b>
+- <b>Iwara: This will fetch the Iwara.tv videos or images to download or get the information.</b>
+- <b>Danbooru: This is familiar with Rule 34, but with additional features.</b>
 - <b>Discord: Use it to interact with the Discord API with ease, including the integration of Discord webhooks.</b>
 - <b>Error Handling: Equipped with a versatile error handling class that efficiently manages any encountered errors and can be easily extracted for further analysis.</b>
 
