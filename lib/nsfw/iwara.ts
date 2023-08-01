@@ -377,6 +377,7 @@ export class IwaraVideos {
  */
 export class IwaraTv {
     private API_URL: string;
+    private IMAGE_URL: string;
 
     /**
      * Creates an instance of the IwaraTv class.
@@ -384,6 +385,7 @@ export class IwaraTv {
      */
     constructor() {
         this.API_URL = "https://api.iwara.tv";
+        this.IMAGE_URL = "https://i.iwara.tv";
     }
 
     /**
@@ -415,7 +417,7 @@ export class IwaraTv {
 
     /**
      * Fetches a specific video from IwaraTV based on the provided video ID.
-     * @param {string} video_id - The unique ID of the video to retrieve.
+     * @param {string} video_id - The video ID of the video to retrieve.
      * @returns {Promise<IwaraVideo>} A promise that resolves with an IwaraVideo object representing the fetched video.
      */
     async get_video(video_id: string): Promise<IwaraVideo> {
@@ -424,23 +426,25 @@ export class IwaraTv {
     }
 
     /**
-     * Downloads a video file using its unique ID.
+     * Downloads a video file using video ID.
      * @param {string} video_id - The unique ID of the video to retrieve.
      * @returns {Promise<void>} A Promise that resolves when the video is downloaded successfully or rejects on error.
      */
     async download_video(video_id: string): Promise<void> {
         try {
             const fetchVideo = await this.get_video(video_id);
-            console.log(
-                `[INFO] Retrieved video: '${fetchVideo.title}' by ${fetchVideo.user.name} (@${fetchVideo.user.username}).`,
+            process.stdout.write(
+                `[INFO] Retrieved video: '${fetchVideo.title}' by ${fetchVideo.user.name} (@${fetchVideo.user.username}).\n`,
             );
 
             const fetchFileUrl = await fetch(fetchVideo.fileUrl);
             const parseJson = await fetchFileUrl.json();
-            const downloadUrl = parseJson[0].src.download;
-            console.log(`[INFO] Retrieved download URL: '${downloadUrl}'`);
+            const downloadUrl = `https:${parseJson[0].src.download}`;
+            process.stdout.write(
+                `[INFO] Retrieved download URL: '${downloadUrl}'\n`,
+            );
 
-            const response = await fetch(`https:${downloadUrl}`);
+            const response = await fetch(downloadUrl);
 
             const contentLength = parseInt(
                 response.headers.get("content-length") ?? "0",
@@ -455,47 +459,99 @@ export class IwaraTv {
                 fetchVideo.file.mime.split("/")[1]
             }`;
 
-            let downloadedBytes = 0;
-            const progressBarWidth = 50;
-
-            const progressStream = new stream.Transform({
-                transform(chunk, _encoding, callback) {
-                    downloadedBytes += chunk.length;
-                    const percent = Math.round(
-                        (downloadedBytes / contentLength) * 100,
-                    );
-
-                    const progress =
-                        "[" +
-                        "="
-                            .repeat(
-                                Math.round((percent / 100) * progressBarWidth),
-                            )
-                            .padEnd(progressBarWidth) +
-                        "]";
-
-                    readline.clearLine(process.stdout, 0);
-                    readline.cursorTo(process.stdout, 0);
-                    process.stdout.write(
-                        `[INFO] Downloading ${progress} ${percent}%\r`,
-                    );
-
-                    callback(null, chunk);
-                },
-            });
-
-            await pipeline(
-                response.body as unknown as stream.Readable,
-                progressStream,
-                fs.createWriteStream(filename),
-            );
-
-            process.stdout.write("\n[INFO] Video downloaded successfully.\n");
+            await this.__save(response, contentLength, filename);
         } catch (err: any) {
-            console.error(
+            process.stderr.write(
                 `[ERROR] An error occurred during download: ${err.message}`,
             );
         }
+    }
+
+    /**
+     * Downloads a video thumbnail using video ID.
+     * @param {string} video_id - The video ID of the video to retrieve.
+     * @returns {Promise<void>} A Promise that resolves when the video is downloaded successfully or rejects on error.
+     */
+    async download_thumbnail(video_id: string): Promise<void> {
+        try {
+            const fetchVideo = await this.get_video(video_id);
+            process.stdout.write(
+                `[INFO] Retrieved video: '${fetchVideo.title}' by ${fetchVideo.user.name} (@${fetchVideo.user.username}).\n`,
+            );
+
+            const response = await fetch(
+                `${this.IMAGE_URL}/image/original/${
+                    fetchVideo.file.id
+                }/thumbnail-${String(fetchVideo.thumbnail).padStart(
+                    2,
+                    "0",
+                )}.jpg`,
+            );
+            const contentLength = parseInt(
+                response.headers.get("content-length") ?? "0",
+                10,
+            );
+            process.stdout.write(
+                `[INFO] Retrieved download URL: '${response.url}'\n`,
+            );
+
+            const sanitizedTitle = fetchVideo.title.replace(
+                /[\\/:"*?<>|]/g,
+                "",
+            );
+            const filename = `${sanitizedTitle}.jpg`;
+
+            this.__save(response, contentLength, filename);
+        } catch (err: any) {
+            process.stderr.write(
+                `[ERROR] An error occurred during download: ${err.message}`,
+            );
+        }
+    }
+
+    async __save(response: Response, contentLength: number, filename: string) {
+        let downloadedBytes = 0;
+        const progressBarWidth = 50;
+
+        const progressStream = new stream.Transform({
+            transform(chunk, _encoding, callback) {
+                downloadedBytes += chunk.length;
+                const percent = Math.round(
+                    (downloadedBytes / contentLength) * 100,
+                );
+
+                const progress =
+                    "[" +
+                    "="
+                        .repeat(Math.round((percent / 100) * progressBarWidth))
+                        .padEnd(progressBarWidth) +
+                    "]";
+
+                readline.clearLine(process.stdout, 0);
+                readline.cursorTo(process.stdout, 0);
+                process.stdout.write(
+                    `[INFO] Downloading ${progress} ${percent}%\r`,
+                );
+
+                callback(null, chunk);
+            },
+        });
+
+        await pipeline(
+            response.body as unknown as stream.Readable,
+            progressStream,
+            fs.createWriteStream(filename),
+        )
+            .catch((reason) => {
+                process.stderr.write(
+                    `[ERROR] Failed to save the file: ${reason}`,
+                );
+            })
+            .finally(() => {
+                process.stdout.write(
+                    "\n[INFO] File downloaded successfully.\n",
+                );
+            });
     }
 
     /**

@@ -331,7 +331,7 @@ export class R34 {
      */
     async get_random_post(): Promise<PostR34> {
         const response = await getCustomURL(this.RANDOM_URL);
-        const postId = this.extractIdFromURL(response.url);
+        const postId = this.__extractIdFromURL(response.url);
 
         if (!postId)
             throw new StarError(
@@ -395,7 +395,7 @@ export class R34 {
                 const href = $(anchorTag).attr("href");
 
                 if (href) {
-                    const postId = this.extractIdFromURL(href);
+                    const postId = this.__extractIdFromURL(href);
 
                     if (postId === null)
                         throw new StarError(
@@ -418,8 +418,9 @@ export class R34 {
      * Extract the ID from a Rule34 post URL.
      * @param {string} url - The post URL.
      * @returns {string | null} The extracted ID or null if not found.
+     * @private
      */
-    extractIdFromURL(url: string): string | null {
+    __extractIdFromURL(url: string): string | null {
         const regex = /id=(\d+)/;
         const match = url.match(regex);
         return match !== null && match[1] !== undefined ? match[1] : null;
