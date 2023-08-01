@@ -81,56 +81,7 @@ export class IwaraVideo {
     /**
      * Information about the video file.
      */
-    file: {
-        /**
-         * The ID of the video file.
-         */
-        id: string;
-        /**
-         * The type of the video file.
-         */
-        type: string;
-        /**
-         * The path of the video file.
-         */
-        path: string;
-        /**
-         * The name of the video file.
-         */
-        name: string;
-        /**
-         * The MIME type of the video file.
-         */
-        mime: string;
-        /**
-         * The size of the video file.
-         */
-        size: number;
-        /**
-         * The width of the video file (if applicable).
-         */
-        width: number | null;
-        /**
-         * The height of the video file (if applicable).
-         */
-        height: number | null;
-        /**
-         * The duration of the video file (if applicable).
-         */
-        duration: number | null;
-        /**
-         * The number of thumbnails of the video file (if applicable).
-         */
-        numThumbnails: number | null;
-        /**
-         * The creation date of the video file.
-         */
-        createdAt: string;
-        /**
-         * The last update date of the video file.
-         */
-        updatedAt: string;
-    };
+    file: IwaraFile;
 
     /**
      * Custom thumbnail information.
@@ -140,105 +91,7 @@ export class IwaraVideo {
     /**
      * Information about the user who posted the video.
      */
-    user: {
-        /**
-         * The ID of the user.
-         */
-        id: string;
-        /**
-         * The name of the user.
-         */
-        name: string;
-        /**
-         * The username of the user.
-         */
-        username: string;
-        /**
-         * The status of the user.
-         */
-        status: string;
-        /**
-         * The role of the user.
-         */
-        role: string;
-        /**
-         * Indicates whether the user is followed by someone.
-         */
-        followedBy: boolean;
-        /**
-         * Indicates whether the user is following someone.
-         */
-        following: boolean;
-        /**
-         * Indicates whether the user is a friend of someone.
-         */
-        friend: boolean;
-        /**
-         * Indicates whether the user has a premium status.
-         */
-        premium: boolean;
-        /**
-         * The locale of the user.
-         */
-        locale: string | null;
-        /**
-         * The last seen date of the user.
-         */
-        seenAt: string;
-        /**
-         * Information about the avatar of the user.
-         */
-        avatar: {
-            /**
-             * The ID of the avatar image.
-             */
-            id: string;
-            /**
-             * The type of the avatar image.
-             */
-            type: string;
-            /**
-             * The path of the avatar image.
-             */
-            path: string;
-            /**
-             * The name of the avatar image.
-             */
-            name: string;
-            /**
-             * The MIME type of the avatar image.
-             */
-            mime: string;
-            /**
-             * The size of the avatar image.
-             */
-            size: number;
-            /**
-             * The width of the avatar image.
-             */
-            width: number;
-            /**
-             * The height of the avatar image.
-             */
-            height: number;
-            /**
-             * The creation date of the avatar image.
-             */
-            createdAt: string;
-            /**
-             * The last update date of the avatar image.
-             */
-            updatedAt: string;
-        };
-        /**
-         * The creation date of the user.
-         */
-        createdAt: string;
-        /**
-         * The last update date of the user.
-         */
-        updatedAt: string;
-    };
+    user: IwaraUser;
 
     /**
      * Tags associated with the video.
@@ -279,63 +132,18 @@ export class IwaraVideo {
         this.numLikes = response.numLikes;
         this.numViews = response.numViews;
         this.numComments = response.numComments;
-
-        this.file = {
-            id: response.file.id,
-            type: response.file.type,
-            path: response.file.path,
-            name: response.file.name,
-            mime: response.file.mime,
-            size: response.file.size,
-            width: response.file.width,
-            height: response.file.height,
-            duration: response.file.duration,
-            numThumbnails: response.file.numThumbnails,
-            createdAt: response.file.createdAt,
-            updatedAt: response.file.updatedAt,
-        };
-
+        this.file = new IwaraFile(response.file);
         this.customThumbnail = response.customThumbnail;
-
-        this.user = {
-            id: response.user.id,
-            name: response.user.name,
-            username: response.user.username,
-            status: response.user.status,
-            role: response.user.role,
-            followedBy: response.user.followedBy,
-            following: response.user.following,
-            friend: response.user.friend,
-            premium: response.user.premium,
-            locale: response.user.locale,
-            seenAt: response.user.seenAt,
-            avatar: {
-                id: response.user.avatar?.id,
-                type: response.user.avatar?.type,
-                path: response.user.avatar?.path,
-                name: response.user.avatar?.name,
-                mime: response.user.avatar?.mime,
-                size: response.user.avatar?.size,
-                width: response.user.avatar?.width,
-                height: response.user.avatar?.height,
-                createdAt: response.user.avatar?.createdAt,
-                updatedAt: response.user.avatar?.updatedAt,
-            },
-            createdAt: response.user.createdAt,
-            updatedAt: response.user.updatedAt,
-        };
-
+        this.user = new IwaraUser(response.user);
         this.tags = response.tags;
-
         this.createdAt = response.createdAt;
         this.updatedAt = response.updatedAt;
-
         this.fileUrl = response.fileUrl;
     }
 }
 
 /**
- * Represents a collection of Iwara.tv video posts.
+ * Represents a curated collection of video posts from Iwara.tv platform.
  */
 export class IwaraVideos {
     /**
@@ -373,6 +181,409 @@ export class IwaraVideos {
 }
 
 /**
+ * Represents a collection of Iwara.tv post files.
+ */
+export class IwaraFile {
+    /**
+     * The ID of the video file.
+     */
+    id: string;
+    /**
+     * The type of the video file.
+     */
+    type: string;
+    /**
+     * The path of the video file.
+     */
+    path: string;
+    /**
+     * The name of the video file.
+     */
+    name: string;
+    /**
+     * The MIME type of the video file.
+     */
+    mime: string;
+    /**
+     * The size of the video file.
+     */
+    size: number;
+    /**
+     * The width of the video file (if applicable).
+     */
+    width: number | null;
+    /**
+     * The height of the video file (if applicable).
+     */
+    height: number | null;
+    /**
+     * The duration of the video file (if applicable).
+     */
+    duration: number | null;
+    /**
+     * The number of thumbnails of the video file (if applicable).
+     */
+    numThumbnails: number | null;
+    /**
+     * The creation date of the video file.
+     */
+    createdAt: string;
+    /**
+     * The last update date of the video file.
+     */
+    updatedAt: string;
+
+    constructor(response: any) {
+        this.id = response.id;
+        this.type = response.type;
+        this.path = response.path;
+        this.name = response.name;
+        this.mime = response.mime;
+        this.size = response.size;
+        this.width = response.width;
+        this.height = response.height;
+        this.duration = response.duration;
+        this.numThumbnails = response.numThumbnails;
+        this.createdAt = response.createdAt;
+        this.updatedAt = response.updatedAt;
+    }
+}
+
+/**
+ * Represents a collection of user content from Iwara.tv.
+ */
+export class IwaraUser {
+    /**
+     * The ID of the user.
+     */
+    id: string;
+
+    /**
+     * The name of the user.
+     */
+    name: string;
+
+    /**
+     * The username of the user.
+     */
+    username: string;
+
+    /**
+     * The status of the user.
+     */
+    status: string;
+
+    /**
+     * The role of the user.
+     */
+    role: string;
+
+    /**
+     * Indicates whether the user is followed by someone.
+     */
+    followedBy: boolean;
+
+    /**
+     * Indicates whether the user is following someone.
+     */
+    following: boolean;
+
+    /**
+     * Indicates whether the user is a friend of someone.
+     */
+    friend: boolean;
+
+    /**
+     * Indicates whether the user has a premium status.
+     */
+    premium: boolean;
+
+    /**
+     * The locale of the user.
+     */
+    locale: string | null;
+
+    /**
+     * The last seen date of the user.
+     */
+    seenAt: string;
+
+    /**
+     * Information about the avatar of the user.
+     */
+    avatar: {
+        /**
+         * The ID of the avatar image.
+         */
+        id: string;
+
+        /**
+         * The type of the avatar image.
+         */
+        type: string;
+
+        /**
+         * The path of the avatar image.
+         */
+        path: string;
+
+        /**
+         * The name of the avatar image.
+         */
+        name: string;
+
+        /**
+         * The MIME type of the avatar image.
+         */
+        mime: string;
+
+        /**
+         * The size of the avatar image.
+         */
+        size: number;
+
+        /**
+         * The width of the avatar image.
+         */
+        width: number;
+
+        /**
+         * The height of the avatar image.
+         */
+        height: number;
+
+        /**
+         * The creation date of the avatar image.
+         */
+        createdAt: string;
+
+        /**
+         * The last update date of the avatar image.
+         */
+        updatedAt: string;
+    };
+
+    /**
+     * The creation date of the user.
+     */
+    createdAt: string;
+
+    /**
+     * The last update date of the user.
+     */
+    updatedAt: string;
+
+    /**
+     * Create a new IwaraUser object.
+     * @param {Object} response - The JSON response representing the collection of Iwara.tv video posts.
+     */
+    constructor(response: any) {
+        this.id = response.id;
+        this.name = response.name;
+        this.username = response.username;
+        this.status = response.status;
+        this.role = response.role;
+        this.followedBy = response.followedBy;
+        this.following = response.following;
+        this.friend = response.friend;
+        this.premium = response.premium;
+        this.locale = response.locale;
+        this.seenAt = response.seenAt;
+        this.avatar = {
+            id: response.avatar?.id,
+            type: response.avatar?.type,
+            path: response.avatar?.path,
+            name: response.avatar?.name,
+            mime: response.avatar?.mime,
+            size: response.avatar?.size,
+            width: response.avatar?.width,
+            height: response.avatar?.height,
+            createdAt: response.avatar?.createdAt,
+            updatedAt: response.avatar?.updatedAt,
+        };
+        this.createdAt = response.createdAt;
+        this.updatedAt = response.updatedAt;
+    }
+}
+
+/**
+ * Represents a collection of single images from Iwara.tv
+ */
+export class IwaraImage {
+    /**
+     * The ID of the image.
+     */
+    id: string;
+
+    /**
+     * The slug of the image.
+     */
+    slug: string | null;
+
+    /**
+     * The title of the image.
+     */
+    title: string;
+
+    /**
+     * The body of the image.
+     */
+    body: string | null;
+
+    /**
+     * The thumbnail information of the image.
+     */
+    thumbnail: {
+        id: string;
+        type: string;
+        path: string;
+        name: string;
+        mime: string;
+        size: number;
+        width: number;
+        height: number;
+        duration: number | null;
+        numThumbnails: number | null;
+        createdAt: string;
+        updatedAt: string;
+    };
+
+    /**
+     * The rating of the image, e.g., "ecchi".
+     */
+    rating: string;
+
+    /**
+     * Whether the image is liked by the user.
+     */
+    liked: boolean;
+
+    /**
+     * The number of images in the series (if applicable).
+     */
+    numImages: number;
+
+    /**
+     * The number of likes the image has received.
+     */
+    numLikes: number;
+
+    /**
+     * The number of views the image has received.
+     */
+    numViews: number;
+
+    /**
+     * The number of comments the image has received.
+     */
+    numComments: number;
+
+    /**
+     * The date and time when the image was created.
+     */
+    createdAt: string;
+
+    /**
+     * The date and time when the image was last updated.
+     */
+    updatedAt: string;
+
+    /**
+     * The additional files associated with the image.
+     * Note: The type should be updated based on the actual data structure for "files".
+     */
+    files: IwaraFile[];
+
+    /**
+     * The tags associated with the image.
+     * Note: The type should be updated based on the actual data structure for "tags".
+     */
+    tags: string[];
+
+    /**
+     * The user who uploaded the image.
+     */
+    user: IwaraUser;
+
+    /**
+     * Create an IwaraImage instance from the provided JSON response.
+     * @param response The JSON response representing the image data.
+     */
+    constructor(response: any) {
+        this.id = response.id;
+        this.slug = response.slug;
+        this.title = response.title;
+        this.body = response.body;
+        this.thumbnail = {
+            id: response.thumbnail.id,
+            type: response.thumbnail.type,
+            path: response.thumbnail.path,
+            name: response.thumbnail.name,
+            mime: response.thumbnail.mime,
+            size: response.thumbnail.size,
+            width: response.thumbnail.width,
+            height: response.thumbnail.height,
+            duration: response.thumbnail.duration,
+            numThumbnails: response.thumbnail.numThumbnails,
+            createdAt: response.thumbnail.createdAt,
+            updatedAt: response.thumbnail.updatedAt,
+        };
+        this.rating = response.rating;
+        this.liked = response.liked;
+        this.numImages = response.numImages;
+        this.numLikes = response.numLikes;
+        this.numViews = response.numViews;
+        this.numComments = response.numComments;
+        this.createdAt = response.createdAt;
+        this.updatedAt = response.updatedAt;
+        this.files = Array.from(
+            response.files,
+            (element) => new IwaraFile(element),
+        );
+        this.tags = response.tags;
+        this.user = new IwaraUser(response.user);
+    }
+}
+
+/**
+ * Represents a collection of Iwara.tv images
+ */
+export class IwaraImages {
+    /**
+     * The total count of video posts in the collection.
+     */
+    count: number;
+
+    /**
+     * The maximum number of video posts allowed per page.
+     */
+    limit: number;
+
+    /**
+     * The current page number of the collection.
+     */
+    page: number;
+
+    /**
+     * An array of IwaraVideo objects representing the video posts in the collection.
+     */
+    results: IwaraImage[];
+
+    /**
+     * Create an IwaraImages instance from the provided JSON response.
+     * @param response The JSON response representing the image data.
+     */
+    constructor(response: any) {
+        this.count = response.count;
+        this.limit = response.limit;
+        this.page = response.page;
+        this.results = response.results.map(
+            (result: any) => new IwaraImage(result),
+        );
+    }
+}
+
+/**
  * Represents the IwaraTV API client for accessing video data.
  */
 export class IwaraTv {
@@ -394,7 +605,6 @@ export class IwaraTv {
      * @param {string} [rating] - The rating category of the videos (all, general, ecchi).
      * @param {number} [page] - The page number to retrieve.
      * @param {number} [limit] - The maximum number of videos per page.
-     * @param {boolean} [subscribed] - If set to true, only videos from subscribed channels will be fetched.
      * @returns {Promise<IwaraVideos>} A promise that resolves with an array of IwaraVideos representing the fetched videos.
      */
     async get_videos(
@@ -402,17 +612,49 @@ export class IwaraTv {
         rating?: string,
         page?: number,
         limit?: number,
-        subscribed?: boolean,
     ): Promise<IwaraVideos> {
         const parameters = {
-            sort: sort,
-            rating: rating,
-            page: page,
-            limit: limit,
-            subscribed: subscribed,
+            sort: sort ?? "trending",
+            rating: rating ?? "all",
+            page: page ?? 0,
+            limit: limit ?? 32,
         };
         const fetch = await this.__fetch("videos", parameters);
         return new IwaraVideos(await fetch.json());
+    }
+
+    /**
+     * Fetches a list of images from the Iwara website based on optional filters.
+     * @param {string} [sort] - (Optional) The sorting option for the fetched images (e.g., "trending", "latest", "popular").
+     * @param {string} [rating] - (Optional) The rating option for the fetched images (e.g., "all", "explicit", "questionable", "safe").
+     * @param {number} [page] - (Optional) The page number of the image list to fetch.
+     * @param {number} [limit] - (Optional) The number of images to fetch per page.
+     * @returns {Promise<IwaraImages>} A Promise that resolves with the fetched images or rejects on error.
+     */
+    async get_images(
+        sort?: string,
+        rating?: string,
+        page?: number,
+        limit?: number,
+    ): Promise<IwaraImages> {
+        const parameters = {
+            sort: sort ?? "trending",
+            rating: rating ?? "all",
+            page: page ?? 0,
+            limit: limit ?? 32,
+        };
+        const fetch = await this.__fetch("images", parameters);
+        return new IwaraImages(await fetch.json());
+    }
+
+    /**
+     * Fetches detailed information about a specific image from the Iwara website using its ID.
+     * @param {string} image_id - The ID of the image to fetch.
+     * @returns {Promise<IwaraImage>} A Promise that resolves with the fetched image's details or rejects on error.
+     */
+    async get_image(image_id: string) {
+        const fetch = await this.__fetch(`image/${image_id}`);
+        return new IwaraImage(await fetch.json());
     }
 
     /**
@@ -509,6 +751,53 @@ export class IwaraTv {
         }
     }
 
+    /**
+     * Downloads an image using its ID.
+     * @param {string} image_id - The image ID of the post to retrieve.
+     * @returns {Promise<void>} A Promise that resolves when the image is downloaded successfully or rejects on error.
+     */
+    async download_image(image_id: string): Promise<void> {
+        try {
+            const fetchImage = await this.get_image(image_id);
+            process.stdout.write(
+                `[INFO] Retrieved image: '${fetchImage.title}' by ${fetchImage.user.name} (@${fetchImage.user.username}).\n`,
+            );
+
+            const files = fetchImage.files[0];
+            const response = await fetch(
+                `${this.IMAGE_URL}/image/large/${files?.id}/${files?.name}`,
+            );
+            const contentLength = parseInt(
+                response.headers.get("content-length") ?? "0",
+                10,
+            );
+
+            process.stdout.write(
+                `[INFO] Retrieved download URL: '${response.url}'\n`,
+            );
+
+            const sanitizedTitle = fetchImage.title.replace(
+                /[\\/:"*?<>|]/g,
+                "",
+            );
+            const filename = `${sanitizedTitle}.jpg`;
+
+            this.__save(response, contentLength, filename);
+        } catch (err: any) {
+            process.stderr.write(
+                `[ERROR] An error occurred during download: ${err.message}`,
+            );
+        }
+    }
+
+    /**
+     * Helper function to save the image data to a file on disk.
+     * @param {Response} response - The response object containing the image data.
+     * @param {number} contentLength - The total size of the image data to be saved.
+     * @param {string} filename - The filename to be used when saving the image.
+     * @returns {Promise<void>} A Promise that resolves when the image is saved successfully or rejects on error.
+     * @private
+     */
     async __save(response: Response, contentLength: number, filename: string) {
         let downloadedBytes = 0;
         const progressBarWidth = 50;
