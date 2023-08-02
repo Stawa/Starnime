@@ -362,7 +362,7 @@ export class StarTrivia {
             const table = (ts.read() || "").toString();
             let result = "";
 
-            for (let row of table.split(/[\r\n]+/)) {
+            for (const row of table.split(/[\r\n]+/)) {
                 let r = row.replace(/[^┬]*┬/, "┌");
                 r = r.replace(/^├─*┼/, "├");
                 r = r.replace(/│[^│]*/, "");
