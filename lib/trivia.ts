@@ -217,7 +217,7 @@ export class StarTrivia {
      */
     async addQuestion(
         parametersTrivia: ParametersTrivia,
-    ): Promise<Record<string, any>> {
+    ): Promise<Record<string, number>> {
         const localFilename = path.join(
             this.options.localPath,
             this.options.localFilename + ".json",
