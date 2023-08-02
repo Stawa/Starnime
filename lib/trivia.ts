@@ -4,7 +4,7 @@ import readline from "readline";
 import { Transform } from "stream";
 import { Console } from "console";
 import { DataStorageType } from "./enums";
-import { StarError } from "./index";
+import { StarError } from "./api";
 
 /**
  * Represents the default options for the StarTrivia interaction.

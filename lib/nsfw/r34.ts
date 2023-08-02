@@ -1,6 +1,6 @@
 import xml2js from "xml2js";
 import cheerio from "cheerio";
-import { StarError } from "../index";
+import { StarError } from "../api";
 import { getCustomURL } from "../request";
 
 /**
