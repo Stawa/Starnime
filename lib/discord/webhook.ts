@@ -10,7 +10,7 @@ interface Embed {
     title?: string;
     description?: string;
     url?: string;
-    timestamp?: string | any;
+    timestamp?: string;
     color?: number;
     footer?: { text: string; icon_url?: string; proxy_icon_url?: string };
     image?: {
@@ -39,7 +39,7 @@ export class DiscordEmbed {
             title?: string;
             description?: string;
             url?: string;
-            timestamp?: string | any;
+            timestamp?: string;
             color?: number;
             footer?: {
                 text: string;
@@ -126,10 +126,10 @@ export class DiscordEmbed {
 
     /**
      * Sets the timestamp of the payload.
-     * @param {string | any} [timestamp] - The timestamp of the payload. If not provided, the current timestamp is used.
+     * @param {string} [timestamp] - The timestamp of the payload. If not provided, the current timestamp is used.
      * @returns {DiscordEmbed} The current DiscordEmbed instance.
      */
-    setTimestamp(timestamp?: string | any): DiscordEmbed {
+    setTimestamp(timestamp?: string): DiscordEmbed {
         this.payload.embeds.timestamp = timestamp || new Date().toISOString();
         return this;
     }

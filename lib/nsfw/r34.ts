@@ -4,6 +4,34 @@ import { StarError } from "../api";
 import { getCustomURL } from "../request";
 
 /**
+ * Represents the JSON response of a post from the Rule34 API.
+ */
+interface PostR34Response {
+    preview_url: string;
+    sample_url: string;
+    file_url: string;
+    directory: number;
+    hash: string;
+    width: number;
+    height: number;
+    id: number;
+    image: string;
+    change: number;
+    owner: string;
+    parent_id: number;
+    rating: string;
+    sample: boolean;
+    sample_height: number;
+    sample_width: number;
+    score: number;
+    tags: string;
+    source: string;
+    status: string;
+    has_notes: boolean;
+    comment_count: number;
+}
+
+/**
  * Represents a post from the Rule34 API.
  * @class
  * @classdesc This class represents a post with various properties.
@@ -121,9 +149,9 @@ export class PostR34 {
 
     /**
      * Create a new PostR34 instance.
-     * @param response - The raw response object from the API.
+     * @param {PostR34Response} response - The raw response object from the API.
      */
-    constructor(response: any) {
+    constructor(response: PostR34Response) {
         this.preview_url = response.preview_url;
         this.sample_url = response.sample_url;
         this.file_url = response.file_url;
@@ -147,6 +175,18 @@ export class PostR34 {
         this.has_notes = response.has_notes;
         this.comment_count = response.comment_count;
     }
+}
+
+/**
+ * Represents the JSON response of a comment on a post from the Rule34 API.
+ */
+interface PostCommentR34Response {
+    created_at: string;
+    post_id: number;
+    body: string;
+    creator: string;
+    id: number;
+    creator_id: number;
 }
 
 /**
@@ -187,9 +227,9 @@ export class PostCommentsR34 {
 
     /**
      * Creates a new instance of the PostCommentsR34 class.
-     * @param response - The raw response object from the API.
+     * @param {PostCommentR34Response} response - The raw response object from the API.
      */
-    constructor(response: any) {
+    constructor(response: PostCommentR34Response) {
         this.created_at = response.created_at;
         this.post_id = response.post_id;
         this.body = response.body;
@@ -197,6 +237,15 @@ export class PostCommentsR34 {
         this.id = response.id;
         this.creator_id = response.creator_id;
     }
+}
+
+/**
+ * Represents the JSON response of top tags from the Rule34 API.
+ */
+interface R34TopTagsResponse {
+    rank: number;
+    name: string;
+    percentage: string;
 }
 
 /**
@@ -222,9 +271,9 @@ export class R34TopTags {
 
     /**
      * Creates a new instance of the R34TopTags class.
-     * @param {object} response - The raw response object from the API.
+     * @param {R34TopTagsResponse} response - The raw response object from the API.
      */
-    constructor(response: { rank: number; name: string; percentage: string }) {
+    constructor(response: R34TopTagsResponse) {
         this.rank = response.rank;
         this.name = response.name;
         this.percentage = response.percentage;
@@ -302,25 +351,43 @@ export class R34 {
         const responseData = await response.text();
 
         return new Promise<PostCommentsR34[]>((resolve, reject) => {
+            interface Xml2JsResult {
+                comments?: {
+                    comment: {
+                        $: {
+                            created_at: string;
+                            post_id: number;
+                            body: string;
+                            creator: string;
+                            id: number;
+                            creator_id: number;
+                        };
+                    }[];
+                };
+            }
+
             const parser = new xml2js.Parser();
-            parser.parseString(responseData, (err: any, result: any) => {
-                if (err) return reject(err);
+            parser.parseString(
+                responseData,
+                (err: Error | null, result: Xml2JsResult) => {
+                    if (err) return reject(err);
 
-                const comments = result.comments?.comment || [];
+                    const comments = result.comments?.comment || [];
 
-                if (comments.length === 0)
-                    throw new StarError(
-                        "UNAVAILABLE_POST_COMMENTS",
-                        "There are no comments on that post.",
-                        0,
+                    if (comments.length === 0)
+                        throw new StarError(
+                            "UNAVAILABLE_POST_COMMENTS",
+                            "There are no comments on that post.",
+                            0,
+                        );
+
+                    const postR34Comments = comments.map(
+                        (comment) => new PostCommentsR34(comment.$),
                     );
 
-                const postR34Comments = comments.map(
-                    (comment: any) => new PostCommentsR34(comment.$),
-                );
-
-                resolve(postR34Comments);
-            });
+                    resolve(postR34Comments);
+                },
+            );
         });
     }
 

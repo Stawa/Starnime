@@ -43,7 +43,7 @@ export class ParametersTrivia {
     /**
      * The list of answer options for the question.
      */
-    answerOptions: any[];
+    answerOptions: string[]; // Assuming the answerOptions are an array of strings.
 
     /**
      * Creates a new instance of ParametersTrivia.
@@ -52,14 +52,14 @@ export class ParametersTrivia {
      * @param {string} options.answer - The answer to the question.
      * @param {string} [options.category] - The category of the question.
      * @param {string} [options.difficulty] - The difficulty of the question.
-     * @param {any[]} options.answerOptions - The list of answer options for the question.
+     * @param {string[]} options.answerOptions - The list of answer options for the question.
      */
     constructor(options: {
         question: string;
         answer: string;
         category?: string;
         difficulty?: string;
-        answerOptions: any[];
+        answerOptions: string[];
     }) {
         const opts = {
             ...options,
@@ -182,12 +182,18 @@ export class StarTrivia {
         return sortedNums.length + 1;
     }
 
+    /**
+     * Checks if there is a duplicate question in the provided `questions` object.
+     * @param {Record<string, { question: string; }>}} questions - The object containing the existing questions.
+     * @param {string} newQuestion - The new question to check for duplicates.
+     * @returns {boolean} - Returns true if a duplicate question is found, otherwise false.
+     */
     checkDuplicate(
-        questions: Record<string, any>,
+        questions: Record<string, { question: string }>,
         newQuestion: string,
     ): boolean {
         return Object.values(questions).some(
-            (questionData: any) => questionData.question === newQuestion,
+            (questionData) => questionData.question === newQuestion,
         );
     }
 
@@ -203,6 +209,12 @@ export class StarTrivia {
         });
     }
 
+    /**
+     * Adds a new trivia question to the collection of questions.
+     * @param {ParametersTrivia} parametersTrivia - The trivia question parameters.
+     * @returns {Promise<Record<string, any>>} - A promise that resolves with the updated question data.
+     * @throws {StarError} - If the new question is a duplicate.
+     */
     async addQuestion(
         parametersTrivia: ParametersTrivia,
     ): Promise<Record<string, any>> {
@@ -214,7 +226,7 @@ export class StarTrivia {
 
         const readFile = await this.readFile(localFilename);
         const userData = JSON.parse(readFile);
-        const questionKeys = Object.keys(userData.questions);
+        const questionKeys = Object.keys(userData.questions || {});
         const questionNums = questionKeys.map(Number);
         const num = this.missingNumber(questionNums);
 
@@ -230,6 +242,7 @@ export class StarTrivia {
         }
 
         const updatedQuestions = {
+            ...userData,
             questions: {
                 ...userData.questions,
                 [num]: {
@@ -334,7 +347,7 @@ export class StarTrivia {
             }
         }
 
-        function displayQuestionTable(input: Record<string, any>[]): void {
+        function displayQuestionTable(input: Record<string, number>[]): void {
             const ts = new Transform({
                 transform(chunk, _enc, cb) {
                     cb(null, chunk);

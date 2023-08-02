@@ -1,4 +1,56 @@
 /**
+ * Represents the JSON response from the Danbooru API for a post.
+ */
+interface DanbooruPostResponse {
+    id: number;
+    created_at: string;
+    uploader_id: number;
+    score: number;
+    source: string;
+    md5: string;
+    last_comment_bumped_at: boolean;
+    rating: string;
+    image_width: number;
+    image_height: number;
+    tag_string: string;
+    fav_count: number;
+    file_ext: string;
+    last_noted_at: boolean;
+    parent_id: number;
+    has_children: boolean;
+    approver_id: number;
+    tag_count_general: number;
+    tag_count_artist: number;
+    tag_count_character: number;
+    tag_count_copyright: number;
+    file_size: number;
+    up_score: number;
+    down_score: number;
+    is_pending: boolean;
+    is_flagged: boolean;
+    is_deleted: boolean;
+    tag_count: number;
+    updated_at: string;
+    is_banned: boolean;
+    pixiv_id: number;
+    last_commented_at: string;
+    has_active_children: boolean;
+    bit_flags: number;
+    tag_count_meta: number;
+    has_large: boolean;
+    has_visible_children: boolean;
+    media_asset: Object;
+    tag_string_general: string;
+    tag_string_character: string;
+    tag_string_copyright: string;
+    tag_string_artist: string;
+    tag_string_meta: string;
+    file_url: string;
+    large_file_url: string;
+    preview_file_url: string;
+}
+
+/**
  * Represents a Danbooru post.
  */
 export class DanbooruPost {
@@ -234,9 +286,9 @@ export class DanbooruPost {
 
     /**
      * Create a new DanbooruPost object.
-     * @param {Object} response - The JSON response representing the Danbooru post.
+     * @param {DanbooruPostResponse} response - The JSON response representing the Danbooru post.
      */
-    constructor(response: any) {
+    constructor(response: DanbooruPostResponse) {
         this.id = response.id;
         this.created_at = response.created_at;
         this.uploader_id = response.uploader_id;
@@ -284,6 +336,22 @@ export class DanbooruPost {
         this.large_file_url = response.large_file_url;
         this.preview_file_url = response.preview_file_url;
     }
+}
+
+/**
+ * Represents the JSON response from the Danbooru API for a pool.
+ */
+interface DanbooruPoolResponse {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+    description: string;
+    is_active: boolean;
+    is_deleted: boolean;
+    post_ids: number[];
+    category: string;
+    post_count: number;
 }
 
 /**
@@ -342,9 +410,9 @@ export class DanbooruPools {
 
     /**
      * Creates a new DanbooruPools instance.
-     * @param {Object} response - The response object from the Danbooru API.
+     * @param {DanbooruPoolResponse} response - The response object from the Danbooru API.
      */
-    constructor(response: any) {
+    constructor(response: DanbooruPoolResponse) {
         this.id = response.id;
         this.name = response.name;
         this.created_at = response.created_at;
@@ -356,6 +424,25 @@ export class DanbooruPools {
         this.category = response.category;
         this.post_count = response.post_count;
     }
+}
+
+/**
+ * Represents the tag object returned from the Danbooru API.
+ */
+interface DanbooruTagObject {
+    id: number;
+    name: string;
+    post_count: number;
+}
+
+/**
+ * Represents the JSON response from the Danbooru API for related tags.
+ */
+interface DanbooruRelatedTagsResponse {
+    query: string;
+    post_count: number;
+    tag: DanbooruTagObject;
+    related_tags: DanbooruTagObject[];
 }
 
 /**
@@ -384,9 +471,9 @@ export class DanbooruRelatedTags {
 
     /**
      * Create a new DanbooruRelatedTags instance.
-     * @param {Object} response - The response object from the Danbooru API.
+     * @param {DanbooruRelatedTagsResponse} response - The response object from the Danbooru API.
      */
-    constructor(response: any) {
+    constructor(response: DanbooruRelatedTagsResponse) {
         this.query = response.query;
         this.post_count = response.post_count;
         this.tag = response.tag;
@@ -519,7 +606,7 @@ export class Danbooru {
     async post_index(query: Record<string, string>): Promise<DanbooruPost[]> {
         const fetch = await this.__fetch(`posts.json`, query);
         const posts = await fetch.json();
-        return posts.map((post: any) => new DanbooruPost(post));
+        return posts.map((post: DanbooruPostResponse) => new DanbooruPost(post));
     }
 
     /**
@@ -565,8 +652,8 @@ export class Danbooru {
     /**
      * Private method for making API requests using fetch.
      * @param {string} endpoints - The API endpoint to request.
-     * @param {Object} [query] - Query parameters for the request.
-     * @param {Object} [parameters] - Additional request parameters.
+     * @param {Record<string, string>} [query] - Query parameters for the request.
+     * @param {Record<string, string>} [parameters] - Additional request parameters.
      * @param {string} method - The HTTP method for the request (default is 'GET').
      * @returns {Promise<Response>} The response from the API request.
      * @private
@@ -574,7 +661,7 @@ export class Danbooru {
     private async __fetch(
         endpoints: string,
         query?: Record<string, string>,
-        parameters?: Object,
+        parameters?: Record<string, string>,
         method: string = "GET",
     ): Promise<Response> {
         const url = this.__addParameters(`${this.API_URL}/${endpoints}`, query);

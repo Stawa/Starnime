@@ -5,6 +5,33 @@ import { promisify } from "util";
 const pipeline = promisify(stream.pipeline);
 
 /**
+ * Represents the JSON response of an IwaraVideo.
+ */
+interface IwaraVideoResponse {
+    id: string;
+    slug: string;
+    title: string;
+    body: string;
+    status: string;
+    rating: string;
+    private: boolean;
+    unlisted: boolean;
+    thumbnail: number;
+    embedUrl: string | null;
+    liked: boolean;
+    numLikes: number;
+    numViews: number;
+    numComments: number;
+    file: IwaraFileResponse;
+    customThumbnail: object | null;
+    user: IwaraUserResponse;
+    tags: string[];
+    createdAt: string;
+    updatedAt: string;
+    fileUrl: string;
+}
+
+/**
  * Represents an Iwara.tv video post.
  */
 export class IwaraVideo {
@@ -115,9 +142,9 @@ export class IwaraVideo {
 
     /**
      * Create a new IwaraVideo object.
-     * @param {Object} response - The JSON response representing the Iwara.tv video post.
+     * @param {IwaraVideoResponse} response - The JSON response representing the Iwara.tv video post.
      */
-    constructor(response: any) {
+    constructor(response: IwaraVideoResponse) {
         this.id = response.id;
         this.slug = response.slug;
         this.title = response.title;
@@ -140,6 +167,16 @@ export class IwaraVideo {
         this.updatedAt = response.updatedAt;
         this.fileUrl = response.fileUrl;
     }
+}
+
+/**
+ * Represents a video post from Iwara.tv platform.
+ */
+interface IwaraVideosResponse {
+    count: number;
+    limit: number;
+    page: number;
+    results: IwaraVideo[];
 }
 
 /**
@@ -168,16 +205,32 @@ export class IwaraVideos {
 
     /**
      * Create a new IwaraVideos object.
-     * @param {Object} response - The JSON response representing the collection of Iwara.tv video posts.
+     * @param {IwaraVideosResponse} response - The JSON response representing the collection of Iwara.tv video posts.
      */
-    constructor(response: any) {
+    constructor(response: IwaraVideosResponse) {
         this.count = response.count;
         this.limit = response.limit;
         this.page = response.page;
-        this.results = response.results.map(
-            (result: any) => new IwaraVideo(result),
-        );
+        this.results = response.results.map((result) => new IwaraVideo(result));
     }
+}
+
+/**
+ * Represents the JSON response of an Iwara.tv post file.
+ */
+interface IwaraFileResponse {
+    id: string;
+    type: string;
+    path: string;
+    name: string;
+    mime: string;
+    size: number;
+    width: number | null;
+    height: number | null;
+    duration: number | null;
+    numThumbnails: number | null;
+    createdAt: string;
+    updatedAt: string;
 }
 
 /**
@@ -233,7 +286,7 @@ export class IwaraFile {
      */
     updatedAt: string;
 
-    constructor(response: any) {
+    constructor(response: IwaraFileResponse) {
         this.id = response.id;
         this.type = response.type;
         this.path = response.path;
@@ -247,6 +300,42 @@ export class IwaraFile {
         this.createdAt = response.createdAt;
         this.updatedAt = response.updatedAt;
     }
+}
+
+/**
+ * Represents the avatar information of an IwaraUser.
+ */
+interface IwaraAvatar {
+    id: string;
+    type: string;
+    path: string;
+    name: string;
+    mime: string;
+    size: number;
+    width: number;
+    height: number;
+    createdAt: string;
+    updatedAt: string;
+}
+
+/**
+ * Represents the JSON response of an IwaraUser.
+ */
+interface IwaraUserResponse {
+    id: string;
+    name: string;
+    username: string;
+    status: string;
+    role: string;
+    followedBy: boolean;
+    following: boolean;
+    friend: boolean;
+    premium: boolean;
+    locale: string | null;
+    seenAt: string;
+    avatar: IwaraAvatar;
+    createdAt: string;
+    updatedAt: string;
 }
 
 /**
@@ -375,9 +464,9 @@ export class IwaraUser {
 
     /**
      * Create a new IwaraUser object.
-     * @param {Object} response - The JSON response representing the collection of Iwara.tv video posts.
+     * @param {IwaraUserResponse} response - The JSON response representing the collection of Iwara.tv video posts.
      */
-    constructor(response: any) {
+    constructor(response: IwaraUserResponse) {
         this.id = response.id;
         this.name = response.name;
         this.username = response.username;
@@ -404,6 +493,46 @@ export class IwaraUser {
         this.createdAt = response.createdAt;
         this.updatedAt = response.updatedAt;
     }
+}
+
+/**
+ * Represents the thumbnail information of an IwaraImage.
+ */
+interface IwaraThumbnail {
+    id: string;
+    type: string;
+    path: string;
+    name: string;
+    mime: string;
+    size: number;
+    width: number;
+    height: number;
+    duration: number | null;
+    numThumbnails: number | null;
+    createdAt: string;
+    updatedAt: string;
+}
+
+/**
+ * Represents the JSON response of an IwaraImage.
+ */
+interface IwaraImageResponse {
+    id: string;
+    slug: string | null;
+    title: string;
+    body: string | null;
+    thumbnail: IwaraThumbnail;
+    rating: string;
+    liked: boolean;
+    numImages: number;
+    numLikes: number;
+    numViews: number;
+    numComments: number;
+    createdAt: string;
+    updatedAt: string;
+    files: IwaraFile[];
+    tags: string[];
+    user: any;
 }
 
 /**
@@ -509,7 +638,7 @@ export class IwaraImage {
      * Create an IwaraImage instance from the provided JSON response.
      * @param response The JSON response representing the image data.
      */
-    constructor(response: any) {
+    constructor(response: IwaraImageResponse) {
         this.id = response.id;
         this.slug = response.slug;
         this.title = response.title;
@@ -546,6 +675,16 @@ export class IwaraImage {
 }
 
 /**
+ * Represents the JSON response of a collection of Iwara.tv images.
+ */
+interface IwaraImagesResponse {
+    count: number;
+    limit: number;
+    page: number;
+    results: IwaraImage[];
+}
+
+/**
  * Represents a collection of Iwara.tv images
  */
 export class IwaraImages {
@@ -573,13 +712,11 @@ export class IwaraImages {
      * Create an IwaraImages instance from the provided JSON response.
      * @param response The JSON response representing the image data.
      */
-    constructor(response: any) {
+    constructor(response: IwaraImagesResponse) {
         this.count = response.count;
         this.limit = response.limit;
         this.page = response.page;
-        this.results = response.results.map(
-            (result: any) => new IwaraImage(result),
-        );
+        this.results = response.results.map((result) => new IwaraImage(result));
     }
 }
 
@@ -616,8 +753,8 @@ export class IwaraTv {
         const parameters = {
             sort: sort ?? "trending",
             rating: rating ?? "all",
-            page: page ?? 0,
-            limit: limit ?? 32,
+            page: page?.toString() ?? "0",
+            limit: limit?.toString() ?? "32",
         };
         const fetch = await this.__fetch("videos", parameters);
         return new IwaraVideos(await fetch.json());
@@ -640,8 +777,8 @@ export class IwaraTv {
         const parameters = {
             sort: sort ?? "trending",
             rating: rating ?? "all",
-            page: page ?? 0,
-            limit: limit ?? 32,
+            page: page?.toString() ?? "0",
+            limit: limit?.toString() ?? "32",
         };
         const fetch = await this.__fetch("images", parameters);
         return new IwaraImages(await fetch.json());
@@ -702,9 +839,11 @@ export class IwaraTv {
             }`;
 
             await this.__save(response, contentLength, filename);
-        } catch (err: any) {
+        } catch (err) {
             process.stderr.write(
-                `[ERROR] An error occurred during download: ${err.message}`,
+                `[ERROR] An error occurred during download: ${
+                    (err as Error).message
+                }`,
             );
         }
     }
@@ -744,9 +883,11 @@ export class IwaraTv {
             const filename = `${sanitizedTitle}.jpg`;
 
             this.__save(response, contentLength, filename);
-        } catch (err: any) {
+        } catch (err) {
             process.stderr.write(
-                `[ERROR] An error occurred during download: ${err.message}`,
+                `[ERROR] An error occurred during download: ${
+                    (err as Error).message
+                }`,
             );
         }
     }
@@ -783,9 +924,11 @@ export class IwaraTv {
             const filename = `${sanitizedTitle}.jpg`;
 
             this.__save(response, contentLength, filename);
-        } catch (err: any) {
+        } catch (err) {
             process.stderr.write(
-                `[ERROR] An error occurred during download: ${err.message}`,
+                `[ERROR] An error occurred during download: ${
+                    (err as Error).message
+                }`,
             );
         }
     }
@@ -846,16 +989,16 @@ export class IwaraTv {
     /**
      * Private method for making API requests using fetch.
      * @param {string} endpoints - The API endpoint to request.
-     * @param {Object} [query] - Query parameters for the request.
-     * @param {Object} [parameters] - Additional request parameters.
+     * @param {Record<string, string>} [query] - Query parameters for the request.
+     * @param {Record<string, string>} [parameters] - Additional request parameters.
      * @param {string} [method] - The HTTP method for the request (default is 'GET').
      * @returns {Promise<Response>} The response from the API request.
      * @private
      */
     private async __fetch(
         endpoints: string,
-        query?: any,
-        parameters?: any,
+        query?: Record<string, string>,
+        parameters?: Record<string, string>,
         method: string = "GET",
     ): Promise<Response> {
         const url = this.__addParameters(`${this.API_URL}/${endpoints}`, query);
@@ -871,11 +1014,14 @@ export class IwaraTv {
     /**
      * Private method to add query parameters to a URL.
      * @param {string} url - The URL to add query parameters to.
-     * @param {Object} [parameters] - The query parameters to add.
+     * @param {Record<string, string>} [parameters] - The query parameters to add.
      * @returns {string} The modified URL with query parameters.
      * @private
      */
-    private __addParameters(url: string, parameters?: any): string {
+    private __addParameters(
+        url: string,
+        parameters?: Record<string, string>,
+    ): string {
         const urlObj = new URL(url);
         const searchParams = new URLSearchParams(parameters);
         urlObj.search = searchParams.toString();
