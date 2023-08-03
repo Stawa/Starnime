@@ -528,7 +528,7 @@ interface IwaraImageResponse {
     updatedAt: string;
     files: IwaraFile[];
     tags: string[];
-    user: any;
+    user: IwaraUser;
 }
 
 /**
@@ -808,12 +808,12 @@ export class IwaraTv extends Utility {
      */
     async download_video(video_id: string): Promise<void> {
         try {
-            const fetchVideo = await this.get_video(video_id);
+            const fetchPost = await this.get_video(video_id);
             process.stdout.write(
-                `[INFO] Retrieved video: '${fetchVideo.title}' by ${fetchVideo.user.name} (@${fetchVideo.user.username}).\n`,
+                `[INFO] Retrieved video: '${fetchPost.title}' by ${fetchPost.user.name} (@${fetchPost.user.username}).\n`,
             );
 
-            const fetchFileUrl = await fetch(fetchVideo.fileUrl);
+            const fetchFileUrl = await fetch(fetchPost.fileUrl);
             const parseJson = await fetchFileUrl.json();
             const downloadUrl = `https:${parseJson[0].src.download}`;
             process.stdout.write(
@@ -827,12 +827,9 @@ export class IwaraTv extends Utility {
                 10,
             );
 
-            const sanitizedTitle = fetchVideo.title.replace(
-                /[\\/:"*?<>|]/g,
-                "",
-            );
+            const sanitizedTitle = fetchPost.title.replace(/[\\/:"*?<>|]/g, "");
             const filename = `${sanitizedTitle}.${
-                fetchVideo.file.mime.split("/")[1]
+                fetchPost.file.mime.split("/")[1]
             }`;
 
             await this.save(response, contentLength, filename);
@@ -852,15 +849,15 @@ export class IwaraTv extends Utility {
      */
     async download_thumbnail(video_id: string): Promise<void> {
         try {
-            const fetchVideo = await this.get_video(video_id);
+            const fetchPost = await this.get_video(video_id);
             process.stdout.write(
-                `[INFO] Video retrieved: '${fetchVideo.title}' by ${fetchVideo.user.name} (@${fetchVideo.user.username}).\n`,
+                `[INFO] Video retrieved: '${fetchPost.title}' by ${fetchPost.user.name} (@${fetchPost.user.username}).\n`,
             );
 
             const response = await fetch(
                 `${this.IMAGE_URL}/image/original/${
-                    fetchVideo.file.id
-                }/thumbnail-${String(fetchVideo.thumbnail).padStart(
+                    fetchPost.file.id
+                }/thumbnail-${String(fetchPost.thumbnail).padStart(
                     2,
                     "0",
                 )}.jpg`,
@@ -873,10 +870,7 @@ export class IwaraTv extends Utility {
                 `[INFO] Download URL retrieved: '${response.url}'\n`,
             );
 
-            const sanitizedTitle = fetchVideo.title.replace(
-                /[\\/:"*?<>|]/g,
-                "",
-            );
+            const sanitizedTitle = fetchPost.title.replace(/[\\/:"*?<>|]/g, "");
             const filename = `${sanitizedTitle}.jpg`;
 
             this.save(response, contentLength, filename);
@@ -896,12 +890,12 @@ export class IwaraTv extends Utility {
      */
     async download_image(image_id: string): Promise<void> {
         try {
-            const fetchImage = await this.get_image(image_id);
+            const fetchPost = await this.get_image(image_id);
             process.stdout.write(
-                `[INFO] Retrieved image: '${fetchImage.title}' by ${fetchImage.user.name} (@${fetchImage.user.username}).\n`,
+                `[INFO] Retrieved image: '${fetchPost.title}' by ${fetchPost.user.name} (@${fetchPost.user.username}).\n`,
             );
 
-            const files = fetchImage.files[0];
+            const files = fetchPost.files[0];
             const response = await fetch(
                 `${this.IMAGE_URL}/image/large/${files?.id}/${files?.name}`,
             );
@@ -914,10 +908,7 @@ export class IwaraTv extends Utility {
                 `[INFO] Retrieved download URL: '${response.url}'\n`,
             );
 
-            const sanitizedTitle = fetchImage.title.replace(
-                /[\\/:"*?<>|]/g,
-                "",
-            );
+            const sanitizedTitle = fetchPost.title.replace(/[\\/:"*?<>|]/g, "");
             const filename = `${sanitizedTitle}.jpg`;
 
             this.save(response, contentLength, filename);

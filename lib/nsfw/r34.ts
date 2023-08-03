@@ -490,14 +490,14 @@ export class R34 extends Utility {
      * @param {string} filename - (Optional) The desired filename for the downloaded post.
      * @returns {Promise<void>} A Promise that resolves when the video is downloaded successfully or rejects on error.
      */
-    async download_post(post_id: string, filename: string): Promise<void> {
+    async download_post(post_id: string, filename?: string): Promise<void> {
         try {
-            const fetchVideo = await this.get_post(post_id);
+            const fetchPost = await this.get_post(post_id);
             process.stdout.write(
-                `[INFO] Post retrieved by ${fetchVideo.owner}.\n`,
+                `[INFO] Post retrieved by ${fetchPost.owner}.\n`,
             );
 
-            const response = await fetch(fetchVideo.file_url);
+            const response = await fetch(fetchPost.file_url);
             const contentLength = parseInt(
                 response.headers.get("content-length") ?? "0",
                 10,
@@ -509,7 +509,7 @@ export class R34 extends Utility {
             const fileExtention = path
                 .extname(path.basename(response.url))
                 .slice(1);
-            const _filename = `${filename ?? fetchVideo.id}.${fileExtention}`;
+            const _filename = `${filename ?? fetchPost.id}.${fileExtention}`;
             this.save(response, contentLength, _filename);
         } catch (err) {
             process.stderr.write(
