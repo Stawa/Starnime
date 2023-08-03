@@ -1,3 +1,5 @@
+import { Utility } from "../utility";
+import path from "path";
 /**
  * Represents the JSON response from the Danbooru API for a post.
  */
@@ -561,11 +563,191 @@ export class PostOptions {
 }
 
 /**
+ * Represents a user from the Danbooru API.
+ */
+interface DanbooruUserResponse {
+    id: number;
+    name: string;
+    level: number;
+    inviter_id: number | null;
+    created_at: string;
+    post_update_count: number;
+    note_update_count: number;
+    post_upload_count: number;
+    is_deleted: boolean;
+    level_string: string;
+    is_banned: boolean;
+    wiki_page_version_count: number;
+    artist_version_count: number;
+    artist_commentary_version_count: number;
+    pool_version_count: number;
+    forum_post_count: number;
+    comment_count: number;
+    favorite_group_count: number;
+    appeal_count: number;
+    flag_count: number;
+    positive_feedback_count: number;
+    neutral_feedback_count: number;
+    negative_feedback_count: number;
+}
+
+/**
+ * Represents a user from the Danbooru API with various properties.
+ */
+class DanbooruUser {
+    /**
+     * The ID of the user.
+     */
+    id: number;
+
+    /**
+     * The name of the user.
+     */
+    name: string;
+
+    /**
+     * The level of the user.
+     */
+    level: number;
+
+    /**
+     * The ID of the inviter (if any) who invited the user.
+     */
+    inviter_id: number | null;
+
+    /**
+     * The date and time when the user was created.
+     */
+    created_at: string;
+
+    /**
+     * The number of post updates made by the user.
+     */
+    post_update_count: number;
+
+    /**
+     * The number of note updates made by the user.
+     */
+    note_update_count: number;
+
+    /**
+     * The number of post uploads made by the user.
+     */
+    post_upload_count: number;
+
+    /**
+     * Indicates whether the user is deleted.
+     */
+    is_deleted: boolean;
+
+    /**
+     * The level string of the user.
+     */
+    level_string: string;
+
+    /**
+     * Indicates whether the user is banned.
+     */
+    is_banned: boolean;
+
+    /**
+     * The number of wiki page versions created by the user.
+     */
+    wiki_page_version_count: number;
+
+    /**
+     * The number of artist versions created by the user.
+     */
+    artist_version_count: number;
+
+    /**
+     * The number of artist commentary versions created by the user.
+     */
+    artist_commentary_version_count: number;
+
+    /**
+     * The number of pool versions created by the user.
+     */
+    pool_version_count: number;
+
+    /**
+     * The number of forum posts made by the user.
+     */
+    forum_post_count: number;
+
+    /**
+     * The number of comments made by the user.
+     */
+    comment_count: number;
+
+    /**
+     * The number of favorite groups created by the user.
+     */
+    favorite_group_count: number;
+
+    /**
+     * The number of appeals made by the user.
+     */
+    appeal_count: number;
+
+    /**
+     * The number of flags raised by the user.
+     */
+    flag_count: number;
+
+    /**
+     * The number of positive feedback received by the user.
+     */
+    positive_feedback_count: number;
+
+    /**
+     * The number of neutral feedback received by the user.
+     */
+    neutral_feedback_count: number;
+
+    /**
+     * The number of negative feedback received by the user.
+     */
+    negative_feedback_count: number;
+
+    /**
+     * Creates a new instance of the DanbooruUser class.
+     * @param {DanbooruUserResponse} response - The raw response object from the API.
+     */
+    constructor(response: DanbooruUserResponse) {
+        this.id = response.id;
+        this.name = response.name;
+        this.level = response.level;
+        this.inviter_id = response.inviter_id;
+        this.created_at = response.created_at;
+        this.post_update_count = response.post_update_count;
+        this.note_update_count = response.note_update_count;
+        this.post_upload_count = response.post_upload_count;
+        this.is_deleted = response.is_deleted;
+        this.level_string = response.level_string;
+        this.is_banned = response.is_banned;
+        this.wiki_page_version_count = response.wiki_page_version_count;
+        this.artist_version_count = response.artist_version_count;
+        this.artist_commentary_version_count =
+            response.artist_commentary_version_count;
+        this.pool_version_count = response.pool_version_count;
+        this.forum_post_count = response.forum_post_count;
+        this.comment_count = response.comment_count;
+        this.favorite_group_count = response.favorite_group_count;
+        this.appeal_count = response.appeal_count;
+        this.flag_count = response.flag_count;
+        this.positive_feedback_count = response.positive_feedback_count;
+        this.neutral_feedback_count = response.neutral_feedback_count;
+        this.negative_feedback_count = response.negative_feedback_count;
+    }
+}
+
+/**
  * Danbooru API Wrapper.
  * @class
  * @classdesc A class for interacting with the Danbooru API.
  */
-export class Danbooru {
+export class Danbooru extends Utility {
     private API_URL: string = "https://danbooru.donmai.us";
     private headers: Record<string, string>;
     private options: DanbooruOptions;
@@ -577,6 +759,7 @@ export class Danbooru {
      * @param {string} options.apiKey - The API key for authentication.
      */
     constructor(options: { username: string; apiKey: string }) {
+        super();
         this.options =
             options instanceof DanbooruOptions
                 ? options
@@ -587,6 +770,11 @@ export class Danbooru {
             ).toString("base64")}`,
             "Content-Type": "application/json",
         };
+    }
+
+    async user_show(user_id: number) {
+        const fetch = await this.__fetch(`users/${user_id}.json`);
+        return new DanbooruUser(await fetch.json());
     }
 
     /**
@@ -606,7 +794,9 @@ export class Danbooru {
     async post_index(query: Record<string, string>): Promise<DanbooruPost[]> {
         const fetch = await this.__fetch(`posts.json`, query);
         const posts = await fetch.json();
-        return posts.map((post: DanbooruPostResponse) => new DanbooruPost(post));
+        return posts.map(
+            (post: DanbooruPostResponse) => new DanbooruPost(post),
+        );
     }
 
     /**
@@ -650,6 +840,43 @@ export class Danbooru {
     }
 
     /**
+     * Downloads an image or video using the Post ID.
+     * @param {number} post_id - The Post ID to download the file for.
+     * @param {string} [filename] - (Optional) The custom filename for the downloaded file. If not provided, the default filename will be used based on the Post ID and file extension.
+     * @returns {Promise<void>} A Promise that resolves when the video is downloaded successfully or rejects on error.
+     */
+    async download_post(post_id: number, filename?: string): Promise<void> {
+        try {
+            const fetchPost = await this.post_show(post_id);
+            const fetchUploader = await this.user_show(fetchPost.uploader_id);
+            process.stdout.write(
+                `[INFO] Post retrieved by ${fetchUploader.name}.\n`,
+            );
+
+            const response = await fetch(fetchPost.file_url);
+            const contentLength = parseInt(
+                response.headers.get("content-length") ?? "0",
+                10,
+            );
+            process.stdout.write(
+                `[INFO] Download URL retrieved: '${response.url}'\n`,
+            );
+
+            const fileExtention = path
+                .extname(path.basename(response.url))
+                .slice(1);
+            const _filename = `${filename ?? fetchPost.id}.${fileExtention}`;
+            this.save(response, contentLength, _filename);
+        } catch (err) {
+            process.stderr.write(
+                `[ERROR] An error occurred during download: ${
+                    (err as Error).message
+                }`,
+            );
+        }
+    }
+
+    /**
      * Private method for making API requests using fetch.
      * @param {string} endpoints - The API endpoint to request.
      * @param {Record<string, string>} [query] - Query parameters for the request.
@@ -664,7 +891,7 @@ export class Danbooru {
         parameters?: Record<string, string>,
         method: string = "GET",
     ): Promise<Response> {
-        const url = this.__addParameters(`${this.API_URL}/${endpoints}`, query);
+        const url = this.addParameters(`${this.API_URL}/${endpoints}`, query);
 
         const options: RequestInit = {
             method: method,
@@ -676,22 +903,5 @@ export class Danbooru {
         };
 
         return await fetch(url, options);
-    }
-
-    /**
-     * Private method to add query parameters to a URL.
-     * @param {string} url - The URL to add query parameters to.
-     * @param {Object} [parameters] - The query parameters to add.
-     * @returns {string} The modified URL with query parameters.
-     * @private
-     */
-    private __addParameters(
-        url: string,
-        parameters?: Record<string, string>,
-    ): string {
-        const urlObj = new URL(url);
-        const searchParams = new URLSearchParams(parameters);
-        urlObj.search = searchParams.toString();
-        return urlObj.toString();
     }
 }
