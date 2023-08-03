@@ -15,14 +15,14 @@
 
 <h4> <span class="emoji">✨</span> Features </h4>
 
-- <b>Anime Images: This include random gifs or pictures of anime characters that can be also use for roleplaying.</b>
-- <b>Easy-to-Use: Can be utilized either manually or through pre-built functions for effortless API fetching.</b>
-- <b>Trivia: This can be used for discord bot and easy to maintain also can be stored as JSON.</b>
-- <b>Rule34: This feature can fetch the Rule34 API with a pre-built function that is already typed and easy to use.</b>
-- <b>Iwara: This will fetch the Iwara.tv videos or images to download or get the information.</b>
-- <b>Danbooru: This is familiar with Rule 34, but with additional features.</b>
-- <b>Discord: Use it to interact with the Discord API with ease, including the integration of Discord webhooks.</b>
-- <b>Error Handling: Equipped with a versatile error handling class that efficiently manages any encountered errors and can be easily extracted for further analysis.</b>
+- <b>Anime Images:</b> Get random gifs or pictures of anime characters suitable for roleplaying.
+- <b>Easy-to-Use:</b> Utilize the tool either manually or through pre-built functions for effortless API fetching.
+- <b>Trivia:</b> It is recommended to use this for discord bots; it is easy to maintain and can be stored as JSON.
+- <b>Rule34:</b> Fetch data from the Rule34 API with a pre-built function that is already typed and easy to use.
+- <b>Iwara:</b> Fetch Iwara.tv videos or images to download or get the information.
+- <b>Danbooru:</b> Similar to Rule34, but with additional features.
+- <b>Discord:</b> Interact with the Discord API with ease, including integration with Discord webhooks.
+- <b>Error Handling:</b> Equipped with a versatile error handling class that efficiently manages any encountered errors and can be easily extracted for further analysis.
 
 <h4> <span class="emoji">📦</span> Installation </h4>
 
