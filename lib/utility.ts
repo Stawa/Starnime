@@ -1,6 +1,6 @@
 import fs from "fs";
-import * as readline from "readline";
 import { promisify } from "util";
+import * as readline from "readline";
 import * as stream from "stream";
 
 /**
@@ -20,6 +20,31 @@ export class Utility {
         contentLength: number,
         filename: string,
     ): Promise<void> {
+        if (fs.existsSync(filename)) {
+            const readlineInterface = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout,
+            });
+
+            const userResponse = await new Promise<string>((resolve) => {
+                readlineInterface.question(
+                    `[WARNING] File "${filename}" already exists. Do you want to overwrite it? (y/n): `,
+                    (answer) => {
+                        resolve(answer.trim().toLowerCase());
+                    },
+                );
+            });
+
+            readlineInterface.close();
+
+            if (userResponse !== "y") {
+                console.log(
+                    `[INFO] File "${filename}" will not be overwritten. Skipping download.`,
+                );
+                return;
+            }
+        }
+
         let downloadedBytes = 0;
         const progressBarWidth = 20;
         const pipeline = promisify(stream.pipeline);
