@@ -1,8 +1,4 @@
-import fs from "fs";
-import * as readline from "readline";
-import * as stream from "stream";
-import { promisify } from "util";
-const pipeline = promisify(stream.pipeline);
+import { Utility } from "../utility";
 
 /**
  * Represents the JSON response of an IwaraVideo.
@@ -723,7 +719,7 @@ export class IwaraImages {
 /**
  * Represents the IwaraTV API client for accessing video data.
  */
-export class IwaraTv {
+export class IwaraTv extends Utility {
     private API_URL: string;
     private IMAGE_URL: string;
 
@@ -732,6 +728,7 @@ export class IwaraTv {
      * @constructor
      */
     constructor() {
+        super();
         this.API_URL = "https://api.iwara.tv";
         this.IMAGE_URL = "https://i.iwara.tv";
     }
@@ -838,7 +835,7 @@ export class IwaraTv {
                 fetchVideo.file.mime.split("/")[1]
             }`;
 
-            await this.__save(response, contentLength, filename);
+            await this.save(response, contentLength, filename);
         } catch (err) {
             process.stderr.write(
                 `[ERROR] An error occurred during download: ${
@@ -857,7 +854,7 @@ export class IwaraTv {
         try {
             const fetchVideo = await this.get_video(video_id);
             process.stdout.write(
-                `[INFO] Retrieved video: '${fetchVideo.title}' by ${fetchVideo.user.name} (@${fetchVideo.user.username}).\n`,
+                `[INFO] Video retrieved: '${fetchVideo.title}' by ${fetchVideo.user.name} (@${fetchVideo.user.username}).\n`,
             );
 
             const response = await fetch(
@@ -873,7 +870,7 @@ export class IwaraTv {
                 10,
             );
             process.stdout.write(
-                `[INFO] Retrieved download URL: '${response.url}'\n`,
+                `[INFO] Download URL retrieved: '${response.url}'\n`,
             );
 
             const sanitizedTitle = fetchVideo.title.replace(
@@ -882,7 +879,7 @@ export class IwaraTv {
             );
             const filename = `${sanitizedTitle}.jpg`;
 
-            this.__save(response, contentLength, filename);
+            this.save(response, contentLength, filename);
         } catch (err) {
             process.stderr.write(
                 `[ERROR] An error occurred during download: ${
@@ -923,7 +920,7 @@ export class IwaraTv {
             );
             const filename = `${sanitizedTitle}.jpg`;
 
-            this.__save(response, contentLength, filename);
+            this.save(response, contentLength, filename);
         } catch (err) {
             process.stderr.write(
                 `[ERROR] An error occurred during download: ${
@@ -931,59 +928,6 @@ export class IwaraTv {
                 }`,
             );
         }
-    }
-
-    /**
-     * Helper function to save the image data to a file on disk.
-     * @param {Response} response - The response object containing the image data.
-     * @param {number} contentLength - The total size of the image data to be saved.
-     * @param {string} filename - The filename to be used when saving the image.
-     * @returns {Promise<void>} A Promise that resolves when the image is saved successfully or rejects on error.
-     * @private
-     */
-    async __save(response: Response, contentLength: number, filename: string) {
-        let downloadedBytes = 0;
-        const progressBarWidth = 50;
-
-        const progressStream = new stream.Transform({
-            transform(chunk, _encoding, callback) {
-                downloadedBytes += chunk.length;
-                const percent = Math.round(
-                    (downloadedBytes / contentLength) * 100,
-                );
-
-                const progress =
-                    "[" +
-                    "="
-                        .repeat(Math.round((percent / 100) * progressBarWidth))
-                        .padEnd(progressBarWidth) +
-                    "]";
-
-                readline.clearLine(process.stdout, 0);
-                readline.cursorTo(process.stdout, 0);
-                process.stdout.write(
-                    `[INFO] Downloading ${progress} ${percent}%\r`,
-                );
-
-                callback(null, chunk);
-            },
-        });
-
-        await pipeline(
-            response.body as unknown as stream.Readable,
-            progressStream,
-            fs.createWriteStream(filename),
-        )
-            .catch((reason) => {
-                process.stderr.write(
-                    `[ERROR] Failed to save the file: ${reason}`,
-                );
-            })
-            .finally(() => {
-                process.stdout.write(
-                    "\n[INFO] File downloaded successfully.\n",
-                );
-            });
     }
 
     /**
@@ -1001,7 +945,7 @@ export class IwaraTv {
         parameters?: Record<string, string>,
         method: string = "GET",
     ): Promise<Response> {
-        const url = this.__addParameters(`${this.API_URL}/${endpoints}`, query);
+        const url = this.addParameters(`${this.API_URL}/${endpoints}`, query);
 
         const options: RequestInit = {
             method: method,
@@ -1009,22 +953,5 @@ export class IwaraTv {
         };
 
         return await fetch(url, options);
-    }
-
-    /**
-     * Private method to add query parameters to a URL.
-     * @param {string} url - The URL to add query parameters to.
-     * @param {Record<string, string>} [parameters] - The query parameters to add.
-     * @returns {string} The modified URL with query parameters.
-     * @private
-     */
-    private __addParameters(
-        url: string,
-        parameters?: Record<string, string>,
-    ): string {
-        const urlObj = new URL(url);
-        const searchParams = new URLSearchParams(parameters);
-        urlObj.search = searchParams.toString();
-        return urlObj.toString();
     }
 }

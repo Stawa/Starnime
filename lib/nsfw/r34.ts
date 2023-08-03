@@ -1,7 +1,9 @@
 import xml2js from "xml2js";
 import cheerio from "cheerio";
 import { StarError } from "../api";
+import path from "path";
 import { getCustomURL } from "../request";
+import { Utility } from "../utility";
 
 /**
  * Represents the JSON response of a post from the Rule34 API.
@@ -285,7 +287,7 @@ export class R34TopTags {
  * @class
  * @classdesc This class encapsulates functionality related to Rule34 API.
  */
-export class R34 {
+export class R34 extends Utility {
     BASE_URL: string;
     API_URL: string;
     POST_URL: string;
@@ -298,6 +300,7 @@ export class R34 {
      * Creates a new instance of the R34 class.
      */
     constructor() {
+        super();
         this.BASE_URL = "https://rule34.xxx";
         this.API_URL = "https://api.rule34.xxx";
         this.POST_URL = `${this.API_URL}/index.php?page=dapi&s=post&q=index&json=1`;
@@ -398,7 +401,7 @@ export class R34 {
      */
     async get_random_post(): Promise<PostR34> {
         const response = await getCustomURL(this.RANDOM_URL);
-        const postId = this.__extractIdFromURL(response.url);
+        const postId = this.extractIdFromURL(response.url);
 
         if (!postId)
             throw new StarError(
@@ -462,7 +465,7 @@ export class R34 {
                 const href = $(anchorTag).attr("href");
 
                 if (href) {
-                    const postId = this.__extractIdFromURL(href);
+                    const postId = this.extractIdFromURL(href);
 
                     if (postId === null)
                         throw new StarError(
@@ -482,14 +485,38 @@ export class R34 {
     }
 
     /**
-     * Extract the ID from a Rule34 post URL.
-     * @param {string} url - The post URL.
-     * @returns {string | null} The extracted ID or null if not found.
-     * @private
+     * Downloads a post with the given post ID.
+     * @param {string} post_id - The ID of the post to download.
+     * @param {string} filename - (Optional) The desired filename for the downloaded post.
+     * @returns {Promise<void>} A Promise that resolves when the video is downloaded successfully or rejects on error.
      */
-    __extractIdFromURL(url: string): string | null {
-        const regex = /id=(\d+)/;
-        const match = url.match(regex);
-        return match !== null && match[1] !== undefined ? match[1] : null;
+    async download_post(post_id: string, filename: string): Promise<void> {
+        try {
+            const fetchVideo = await this.get_post(post_id);
+            process.stdout.write(
+                `[INFO] Post retrieved by ${fetchVideo.owner}.\n`,
+            );
+
+            const response = await fetch(fetchVideo.file_url);
+            const contentLength = parseInt(
+                response.headers.get("content-length") ?? "0",
+                10,
+            );
+            process.stdout.write(
+                `[INFO] Download URL retrieved: '${response.url}'\n`,
+            );
+
+            const fileExtention = path
+                .extname(path.basename(response.url))
+                .slice(1);
+            const _filename = `${filename ?? fetchVideo.id}.${fileExtention}`;
+            this.save(response, contentLength, _filename);
+        } catch (err) {
+            process.stderr.write(
+                `[ERROR] An error occurred during download: ${
+                    (err as Error).message
+                }`,
+            );
+        }
     }
 }
