@@ -34,7 +34,8 @@
     "danbooru",
     "discord",
     "webhook",
-    "iwara"
+    "iwara",
+    "downloader"
   ],
   "devDependencies": {
     "@types/xml2js": "^0.4.11",

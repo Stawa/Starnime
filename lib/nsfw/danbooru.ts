@@ -1,5 +1,32 @@
 import { Utility } from "../utility";
 import path from "path";
+
+/**
+ * Represents a media asset from the Danbooru API.
+ */
+interface MediaAsset {
+    id: number;
+    created_at: string;
+    updated_at: string;
+    md5: string;
+    file_ext: string;
+    file_size: number;
+    image_width: number;
+    image_height: number;
+    duration: null | number;
+    status: "active" | "inactive";
+    file_key: string;
+    is_public: boolean;
+    pixel_hash: string;
+    variants: {
+        type: "180x180" | "360x360" | "720x720" | "sample" | "original";
+        url: string;
+        width: number;
+        height: number;
+        file_ext: string;
+    }[];
+}
+
 /**
  * Represents the JSON response from the Danbooru API for a post.
  */
@@ -41,7 +68,6 @@ interface DanbooruPostResponse {
     tag_count_meta: number;
     has_large: boolean;
     has_visible_children: boolean;
-    media_asset: Object;
     tag_string_general: string;
     tag_string_character: string;
     tag_string_copyright: string;
@@ -50,6 +76,7 @@ interface DanbooruPostResponse {
     file_url: string;
     large_file_url: string;
     preview_file_url: string;
+    media_asset: MediaAsset;
 }
 
 /**
@@ -244,7 +271,7 @@ export class DanbooruPost {
     /**
      * The media asset information associated with the post.
      */
-    media_asset: Object;
+    media_asset: MediaAsset;
 
     /**
      * The general tag string associated with the post.
