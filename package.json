@@ -10,6 +10,9 @@
     "clean": "IF EXIST dist rmdir /s /q dist",
     "publish": "npm run build && npm publish"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Stawa/Starnime.git"
@@ -22,7 +25,10 @@
   "homepage": "https://starnime.vercel.app",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
+    "figlet": "^1.6.0",
+    "gradient-string": "^2.0.2",
     "node-fetch": "^2.6.12",
+    "ora": "^5.4.1",
     "xml2js": "^0.6.0"
   },
   "keywords": [
@@ -35,9 +41,13 @@
     "discord",
     "webhook",
     "iwara",
-    "downloader"
+    "downloader",
+    "showroom-live",
+    "showroom"
   ],
   "devDependencies": {
+    "@types/figlet": "^1.5.6",
+    "@types/gradient-string": "^1.1.2",
     "@types/xml2js": "^0.4.11",
     "typescript": "^5.1.6"
   }
