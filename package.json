@@ -25,7 +25,7 @@
   "homepage": "https://starnime.vercel.app",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "figlet": "^1.6.0",
+    "figlet": "^1.7.0",
     "gradient-string": "^2.0.2",
     "node-fetch": "^2.6.12",
     "ora": "^5.4.1",
