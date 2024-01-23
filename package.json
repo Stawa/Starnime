@@ -8,8 +8,11 @@
   "scripts": {
     "build": "npm run clean && tsc --build",
     "clean": "IF EXIST dist rmdir /s /q dist",
-    "publish": "npm run build && npm publish"
+    "prepare": "npm run build",
   },
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=16"
   },
